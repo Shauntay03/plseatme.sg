@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Please Eat Me SG</title>
+<meta name="description" content="Honest food reviews from Singapore and beyond — by @plseatme.sg">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: #111; }
+  .sans { font-family: 'Helvetica Neue', Arial, sans-serif; }
+  nav { border-bottom: 1px solid #e8e8e8; padding: 0 2rem; }
+  .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-size: 15px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; color: #111; }
+  .nav-handle { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #aaa; margin-left: 8px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; cursor: pointer; color: #555; text-decoration: none; }
+  .nav-links a:hover { color: #111; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HOME */
+  #home { display: block; }
+  .hero { border-bottom: 1px solid #e8e8e8; padding: 3.5rem 0 3rem; }
+  .hero-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; color: #888; margin-bottom: 1rem; }
+  .hero h1 { font-size: 42px; font-weight: 400; line-height: 1.15; margin-bottom: 1.25rem; max-width: 620px; }
+  .hero p { font-size: 16px; line-height: 1.75; color: #555; max-width: 520px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
+  .featured { border-bottom: 1px solid #e8e8e8; padding: 2.5rem 0; }
+  .section-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; color: #888; margin-bottom: 1.25rem; }
+  .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .photo-placeholder { background: #f5f3ef; aspect-ratio: 4/3; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+  .photo-placeholder span { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #ccc; letter-spacing: 0.05em; }
+  .featured-meta { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #888; }
+  .featured h2 { font-size: 26px; font-weight: 400; line-height: 1.25; margin: 10px 0 16px; }
+  .featured-excerpt { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 24px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
+  .read-more { font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.04em; border-bottom: 1px solid #111; padding-bottom: 1px; cursor: pointer; text-decoration: none; color: #111; }
+  .recent { padding: 2.5rem 0; }
+  .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .recent-card { cursor: pointer; }
+  .recent-card:hover h3 { text-decoration: underline; }
+  .recent-photo { background: #f5f3ef; aspect-ratio: 3/2; border-radius: 2px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+  .recent-cuisine { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #888; display: block; margin-bottom: 6px; }
+  .recent-card h3 { font-size: 15px; font-weight: 400; line-height: 1.35; margin-bottom: 8px; }
+  .recent-meta { font-size: 11px; color: #aaa; font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+  /* REVIEWS */
+  #reviews { display: none; }
+  .reviews-header { border-bottom: 1px solid #e8e8e8; padding: 2.5rem 0 2rem; }
+  .reviews-header h1 { font-size: 32px; font-weight: 400; margin-bottom: 6px; }
+  .reviews-header p { font-size: 14px; color: #888; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
+  .filters { border-bottom: 1px solid #e8e8e8; padding: 1.25rem 0; display: flex; flex-direction: column; gap: 10px; }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #bbb; margin-right: 2px; min-width: 60px; }
+  .chip { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.07em; padding: 4px 12px; border: 1px solid #ddd; background: #fff; color: #666; border-radius: 2px; cursor: pointer; white-space: nowrap; }
+  .chip:hover { border-color: #aaa; }
+  .chip.active { border-color: #111; background: #111; color: #fff; }
+  .chip.special { background: #FAEEDA; border-color: #FAC775; color: #854F0B; }
+  .chip.special.active { background: #854F0B; border-color: #854F0B; color: #fff; }
+  #search-input { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; padding: 7px 12px; border: 1px solid #ddd; border-radius: 2px; width: 260px; outline: none; color: #111; }
+  .results-count { padding: 0.75rem 0 0.25rem; font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #bbb; letter-spacing: 0.06em; }
+  .review-item { border-bottom: 1px solid #f0f0f0; padding: 1rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .review-item:hover .review-title { text-decoration: underline; }
+  .review-title { font-size: 15px; font-weight: 400; margin-bottom: 6px; line-height: 1.3; }
+  .review-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 2px; background: #f5f5f5; color: #888; border: 1px solid #eee; }
+  .tag.special { background: #FAEEDA; color: #854F0B; border-color: #FAC775; }
+  .tag-area { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #ccc; letter-spacing: 0.05em; align-self: center; }
+  .arrow { font-size: 11px; color: #ccc; white-space: nowrap; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid #e8e8e8; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+  .footer-copy { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; color: #aaa; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; color: #888; text-decoration: none; }
+  .footer-links a:hover { color: #111; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showPage('home')">Please Eat Me SG<span class="nav-handle">(@plseatme.sg)</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('reviews')">REVIEWS</a>
+      <a href="#" onclick="showPage('about')">ABOUT</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home">
+  <div class="wrap">
+    <div class="hero">
+      <p class="hero-label">HONEST FOOD REVIEWS · SINGAPORE AND BEYOND</p>
+      <h1>Eating Well Unapologetically.</h1>
+      <p>Eating across Singapore and globally, one review at a time.</p>
+    </div>
+    <div class="featured">
+      <p class="section-label">LATEST REVIEW</p>
+      <div class="featured-grid">
+        <div class="photo-placeholder"><span>PHOTO</span></div>
+        <div style="padding-top:8px">
+          <span class="featured-meta">ADD YOUR LATEST RESTAURANT · SINGAPORE</span>
+          <h2>Your latest review goes here</h2>
+          <p class="featured-excerpt">Add your review excerpt here once you've written your first post using the blog generator.</p>
+          <a href="#" class="read-more" onclick="showPage('reviews')">Read review</a>
+        </div>
+      </div>
+    </div>
+    <div class="recent">
+      <p class="section-label">RECENT REVIEWS</p>
+      <div class="recent-grid">
+        <div class="recent-card" onclick="showPage('reviews')">
+          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
+          <span class="recent-cuisine">JAPANESE · SINGAPORE</span>
+          <h3>Kan Sushi Omakase</h3>
+          <span class="recent-meta">★★★★★</span>
+        </div>
+        <div class="recent-card" onclick="showPage('reviews')">
+          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
+          <span class="recent-cuisine">KOREAN · SEOUL</span>
+          <h3>Puradak Chicken</h3>
+          <span class="recent-meta">★★★★☆</span>
+        </div>
+        <div class="recent-card" onclick="showPage('reviews')">
+          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
+          <span class="recent-cuisine">ITALIAN · SINGAPORE</span>
+          <h3>Casa Vostra</h3>
+          <span class="recent-meta">★★★★☆</span>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="footer-copy">© 2026 plseatme.sg</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/plseatme.sg" target="_blank">INSTAGRAM</a>
+        <a href="https://tiktok.com/@plseatme.sg" target="_blank">TIKTOK</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- REVIEWS PAGE -->
+<div id="reviews">
+  <div class="wrap">
+    <div class="reviews-header">
+      <h1>All reviews</h1>
+      <p id="total-count">164 places across Singapore, Seoul, Bangkok & China</p>
+    </div>
+    <div class="filters">
+      <input type="text" id="search-input" placeholder="Search restaurants..." oninput="filterReviews()">
+      <div class="filter-row">
+        <span class="filter-label sans">CITY</span>
+        <button class="chip active" onclick="setFilter('city','All',this)">ALL</button>
+        <button class="chip" onclick="setFilter('city','Singapore',this)">SINGAPORE</button>
+        <button class="chip" onclick="setFilter('city','Seoul',this)">SEOUL</button>
+        <button class="chip" onclick="setFilter('city','Bangkok',this)">BANGKOK</button>
+        <button class="chip" onclick="setFilter('city','China',this)">CHINA</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label sans">TYPE</span>
+        <button class="chip special" onclick="setFilter('special','Omakase',this)">OMAKASE</button>
+        <button class="chip special" onclick="setFilter('special','High Tea',this)">HIGH TEA</button>
+        <button class="chip special" onclick="setFilter('special','Date Night',this)">DATE NIGHT</button>
+      </div>
+      <div class="filter-row" id="cuisine-filters"></div>
+    </div>
+    <div class="results-count" id="results-count">164 RESULTS</div>
+    <div id="reviews-list"></div>
+    <footer>
+      <span class="footer-copy">© 2026 plseatme.sg</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/plseatme.sg" target="_blank">INSTAGRAM</a>
+        <a href="https://tiktok.com/@plseatme.sg" target="_blank">TIKTOK</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about" style="display:none">
+  <div class="wrap">
+    <div style="padding: 3rem 0; max-width: 600px;">
+      <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:1rem">ABOUT</p>
+      <h1 style="font-size:32px;font-weight:400;margin-bottom:1.5rem">Please Eat Me SG</h1>
+      <p style="font-size:16px;line-height:1.85;color:#444;margin-bottom:1rem">Honest food reviews from Singapore and wherever the next flight takes me. Follow along on <a href="https://instagram.com/plseatme.sg" style="color:#111">Instagram</a> and <a href="https://tiktok.com/@plseatme.sg" style="color:#111">TikTok</a> at @plseatme.sg.</p>
+    </div>
+    <footer>
+      <span class="footer-copy">© 2026 plseatme.sg</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/plseatme.sg" target="_blank">INSTAGRAM</a>
+        <a href="https://tiktok.com/@plseatme.sg" target="_blank">TIKTOK</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+const SPECIAL = ["Omakase","High Tea","Date Night"];
+const ALL = [
+  {slug:"columbus-coffee-co",title:"Columbus Coffee Co.",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"aburi-en",title:"Aburi En",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-zushi",title:"Sushi Zushi",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
+  {slug:"ralphs-coffee",title:"Ralph's Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-zanmai",title:"Sushi Zanmai",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
+  {slug:"dark-gallery",title:"Dark Gallery",tags:["Cafe","Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"casa-vostra",title:"Casa Vostra",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"mamma-mia",title:"Mamma Mia Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"little-farms-hv",title:"Little Farms – HV",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"tempura-makino",title:"Tempura Makino",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"shin-minori",title:"Shin Minori",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"black-tap",title:"Black Tap",tags:["American"],area:"Singapore",country:"Singapore"},
+  {slug:"seoul-noodle-shop",title:"Seoul Noodle Shop",tags:["Korean"],area:"Singapore",country:"Singapore"},
+  {slug:"birds-of-paradise",title:"Birds of Paradise",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"go-rogue",title:"Go Rogue",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"bao-makers",title:"Bao Makers",tags:["Asian"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-yuki",title:"Sushi Yuki",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
+  {slug:"toku-nori",title:"Toku Nori",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"moxie",title:"Moxie",tags:["European","Mediterranean","Greek","Date Night"],area:"Singapore",country:"Singapore"},
+  {slug:"mott-32",title:"Mott 32",tags:["Chinese"],area:"Singapore",country:"Singapore"},
+  {slug:"marche",title:"Marche",tags:["European"],area:"Singapore",country:"Singapore"},
+  {slug:"5themoments",title:"5themoments",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-go",title:"Sushi Go",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
+  {slug:"chye-seng-huat",title:"Chye Seng Huat Coffee House",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"fourgather-thai",title:"Fourgather Thai Casual Dining",tags:["Thai"],area:"Singapore",country:"Singapore"},
+  {slug:"sushiro-sg",title:"Sushiro",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
+  {slug:"luckin",title:"Luckin",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"risebakehouse-313",title:"Risebakehouse 313",tags:["Bakery"],area:"Singapore",country:"Singapore"},
+  {slug:"shen-and-co",title:"Shen & Co",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"an-tea-social",title:"An Tea Social",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"haidilao",title:"Haidilao",tags:["Hotpot"],area:"Singapore",country:"Singapore"},
+  {slug:"warabimochi-kamakura",title:"Warabimochi Kamakura",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"glasshouse",title:"Glasshouse",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"chicco-trattoria",title:"Chicco Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"tokyo-soba",title:"Tokyo Soba @ Tanjong Pagar",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"urban-eats",title:"Urban Eats Factory",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"tomoro-coffee",title:"Tomoro Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"bonjour-ma-cuisine",title:"Bonjour Ma Cuisine",tags:["French"],area:"Singapore",country:"Singapore"},
+  {slug:"sweet-dots",title:"Sweet Dots",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"nespresso",title:"Nespresso",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"brotzeit",title:"Brotzeit @ VivoCity",tags:["German"],area:"Singapore",country:"Singapore"},
+  {slug:"tofu-g",title:"TOFU G",tags:["Korean"],area:"Singapore",country:"Singapore"},
+  {slug:"pralet",title:"Pralet",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"anti-dote",title:"Anti:Dote",tags:["Bar","High Tea"],area:"Singapore",country:"Singapore"},
+  {slug:"bakalaki",title:"Bakalaki",tags:["Greek"],area:"Singapore",country:"Singapore"},
+  {slug:"scarpetta",title:"Scarpetta",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"big-short-coffee",title:"Big Short Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"yo-chi",title:"Yo-Chi",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"green-green",title:"Green Green",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"long-jing",title:"Long Jing – Lu Cha",tags:["Tea"],area:"Singapore",country:"Singapore"},
+  {slug:"risebakehouse-heritage",title:"Risebakehouse Heritage",tags:["Bakery"],area:"Singapore",country:"Singapore"},
+  {slug:"dior-cafe",title:"Dior Experience Café",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"golden-moments",title:"Golden Moments Cafe",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"hellu",title:"Hellu",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-muni",title:"Sushi Muni",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
+  {slug:"udon-shin",title:"Udon Shin",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"rapu",title:"Rapu",tags:["Korean"],area:"Singapore",country:"Singapore"},
+  {slug:"a-beautiful-day",title:"A Beautiful Day Café",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"a-ma-cha",title:"A Ma Cha",tags:["Tea"],area:"Singapore",country:"Singapore"},
+  {slug:"apt",title:"APT",tags:["Bar"],area:"Singapore",country:"Singapore"},
+  {slug:"ellenborough",title:"Ellenborough Market",tags:["Buffet"],area:"Singapore",country:"Singapore"},
+  {slug:"cococean",title:"Cococean",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"kulto",title:"Kulto",tags:["Spanish"],area:"Singapore",country:"Singapore"},
+  {slug:"sushi-yujo",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
+  {slug:"lino",title:"LINO",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"skai",title:"SKAI Restaurant",tags:["Modern","High Tea"],area:"Singapore",country:"Singapore"},
+  {slug:"onori",title:"Onori",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"knead-kopi",title:"Knead Kopi",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"bacha-coffee",title:"Bacha Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"zus",title:"ZUS",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"opus",title:"Opus",tags:["Bar"],area:"Singapore",country:"Singapore"},
+  {slug:"another-bar",title:"Another Bar",tags:["Bar"],area:"Singapore",country:"Singapore"},
+  {slug:"tsujiri",title:"Tsujiri Premium",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"morinaga",title:"Morinaga Izakaya",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"haru-haru",title:"Haru Haru Mentai + Ramen",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"baby-fang",title:"Baby Fang",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"harrys",title:"Harry's",tags:["Bar"],area:"Singapore",country:"Singapore"},
+  {slug:"pastaria-abate",title:"Pastaria Abate",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"muchachos",title:"Muchachos",tags:["Mexican"],area:"Singapore",country:"Singapore"},
+  {slug:"state-of-affairs",title:"State of Affairs (Longhaus)",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"kan-sushi",title:"Kan Sushi Omakase",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
+  {slug:"watami",title:"Watami",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"family-mookata",title:"Family Mookata",tags:["Thai"],area:"Singapore",country:"Singapore"},
+  {slug:"hello-arigato",title:"Hello Arigato",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"mosella",title:"Mosella",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"q-wa-bar",title:"Q Wa Bar",tags:["Bar"],area:"Singapore",country:"Singapore"},
+  {slug:"mondo",title:"Mondo",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"bao-er-cafe",title:"Bao Er Cafe",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"taka-mochi",title:"Taka Basement Mochi",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"violet-oon",title:"Violet Oon",tags:["Singaporean"],area:"Singapore",country:"Singapore"},
+  {slug:"fangko-house",title:"Fangko House",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"kream-korean",title:"Kream Korean",tags:["Korean"],area:"Singapore",country:"Singapore"},
+  {slug:"nanyang-dao",title:"Nanyang Dao",tags:["Chinese"],area:"Singapore",country:"Singapore"},
+  {slug:"chachao-tea",title:"ChaChao Tea",tags:["Tea"],area:"Singapore",country:"Singapore"},
+  {slug:"bull-noodle",title:"Bull Noodle House",tags:["Chinese"],area:"Singapore",country:"Singapore"},
+  {slug:"nickel",title:"Nickel",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"gotti-italiano",title:"Gotti Italiano",tags:["Italian"],area:"Singapore",country:"Singapore"},
+  {slug:"mongkok-dimsum",title:"Mongkok Dimsum",tags:["Chinese"],area:"Singapore",country:"Singapore"},
+  {slug:"us-pizza",title:"US Pizza",tags:["Pizza"],area:"Singapore",country:"Singapore"},
+  {slug:"9-toast",title:"9 Toast",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"dong-fang",title:"Dong Fang Mei Shi",tags:["Chinese"],area:"Singapore",country:"Singapore"},
+  {slug:"tomacado",title:"Tomacado",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"tamoya",title:"Tamoya",tags:["Japanese"],area:"Singapore",country:"Singapore"},
+  {slug:"yut-yun",title:"Yut Yun Tong Sui",tags:["Dessert"],area:"Singapore",country:"Singapore"},
+  {slug:"wknd-bakes",title:"Wknd Bakes",tags:["Bakery"],area:"Singapore",country:"Singapore"},
+  {slug:"little-farms-sentosa",title:"Little Farms – Sentosa",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"de-taste",title:"De Taste @ Orchard Central",tags:["Asian"],area:"Singapore",country:"Singapore"},
+  {slug:"lantine",title:"Lantine",tags:["Cafe"],area:"Singapore",country:"Singapore"},
+  {slug:"cashmere-roastery",title:"Cashmere Roastery Café",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"metcha",title:"Metcha",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"conway-coffee",title:"Conway Coffee",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"colline-cafe",title:"Colline Cafe",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"jayeondo-salt-bread",title:"Jayeondo Salt Bread",tags:["Bakery"],area:"Seoul",country:"Seoul"},
+  {slug:"mog-eumdang",title:"Mog-Eumdang at Anguk",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"han-jung-sun-mochi",title:"Han Jung Sun Mochi – Seongsu",tags:["Dessert"],area:"Seoul",country:"Seoul"},
+  {slug:"tosokchon",title:"Tosokchon Samgyetang",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"puradak",title:"Puradak Chicken",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"twisted-dnut",title:"Twisted Dnut – Gwangjang",tags:["Dessert"],area:"Seoul",country:"Seoul"},
+  {slug:"ikseon-chwihyang",title:"Ikseon Chwihyang",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"ilho",title:"ILHO",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"onion-seoul",title:"Onion",tags:["Bakery"],area:"Seoul",country:"Seoul"},
+  {slug:"nak-won",title:"Nak-Won",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"myth-jokbal",title:"Myth Jokbal",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"meita-wang",title:"Meita Wang",tags:["Chinese"],area:"Seoul",country:"Seoul"},
+  {slug:"jojo-kalguksu",title:"Jojo Kalguksu",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"garlic-boy",title:"Garlic Boy",tags:["Korean"],area:"Seoul",country:"Seoul"},
+  {slug:"churronut",title:"Churronut @ Haerye Coffee",tags:["Dessert"],area:"Seoul",country:"Seoul"},
+  {slug:"better-day-cafe",title:"Better Day Cafe @ Hongdae",tags:["Cafe"],area:"Seoul",country:"Seoul"},
+  {slug:"primo-bacio",title:"Primo Bacio Baci @ Hongdae",tags:["Italian"],area:"Seoul",country:"Seoul"},
+  {slug:"rare-medium",title:"Rare Medium Welldone",tags:["Steak"],area:"Seoul",country:"Seoul"},
+  {slug:"grain-cookies",title:"Grain Cookies @ Lotte Dept Store",tags:["Dessert"],area:"Seoul",country:"Seoul"},
+  {slug:"ban-khun-mae",title:"Ban Khun Mae",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
+  {slug:"juneny-candy",title:"Juneny Candy",tags:["Dessert"],area:"Bangkok",country:"Bangkok"},
+  {slug:"frans",title:"Fran's",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
+  {slug:"eric-kayser-bkk",title:"Eric Kayser",tags:["Bakery"],area:"Bangkok",country:"Bangkok"},
+  {slug:"the-ground",title:"The Ground",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
+  {slug:"coffee-beans-by-dao",title:"Coffee Beans by Dao",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
+  {slug:"namtaohuu",title:"NamTaoHuu Pu Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
+  {slug:"mk-gold-hotpot",title:"MK Gold Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok"},
+  {slug:"siam-p-crepe",title:"Siam P Michelin Crepe",tags:["Dessert"],area:"Bangkok",country:"Bangkok"},
+  {slug:"mk-bkk-hotpot",title:"MK BKK Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok"},
+  {slug:"sushiro-bkk",title:"Sushiro BKK",tags:["Japanese","Sushi"],area:"Bangkok",country:"Bangkok"},
+  {slug:"hagow-yaowarat",title:"Hagow Yaowarat",tags:["Chinese"],area:"Bangkok",country:"Bangkok"},
+  {slug:"9-inch-banana",title:"9 Inch Fried Banana",tags:["Snack"],area:"Bangkok",country:"Bangkok"},
+  {slug:"here-hai",title:"Here Hai",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
+  {slug:"pandan-snack",title:"Pandan Snack",tags:["Snack"],area:"Bangkok",country:"Bangkok"},
+  {slug:"karun",title:"Karun",tags:["Tea"],area:"Bangkok",country:"Bangkok"},
+  {slug:"arabica-icon-siam",title:"Arabica ICON SIAM",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
+  {slug:"kub-khao",title:"Kub Khao Kub Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
+  {slug:"cps-coffee",title:"CPS Coffee",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
+  {slug:"a-fox-princess",title:"A Fox Princess Kitchen",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
+  {slug:"101-cantonese",title:"101 Private Cantonese Kitchen",tags:["Chinese"],area:"Guangzhou",country:"China"},
+  {slug:"ililil-cafe",title:"ililil Cafe Dongshankou",tags:["Cafe"],area:"Guangzhou",country:"China"},
+  {slug:"dian-du-de",title:"Dian Du De",tags:["Chinese"],area:"Guangzhou",country:"China"},
+  {slug:"tao-tao-ju",title:"Tao Tao Ju",tags:["Chinese"],area:"Guangzhou",country:"China"},
+  {slug:"chua-lam-dimsum",title:"Chua Lam's Dimsum",tags:["Chinese"],area:"Guangzhou",country:"China"},
+  {slug:"fast-foot-coffee",title:"Fast Foot Coffee",tags:["Cafe"],area:"Guangzhou",country:"China"},
+  {slug:"da-hua-jian-bing",title:"Da Hua Jian Bing",tags:["Chinese"],area:"Beijing",country:"China"},
+  {slug:"fangzhuanchang",title:"Fangzhuanchang No. 69 Zhajiangmian",tags:["Chinese"],area:"Beijing",country:"China"},
+  {slug:"matcha-puff-bj",title:"Matcha Puff",tags:["Dessert"],area:"Beijing",country:"China"},
+  {slug:"sugar-cafe-bj",title:"Sugar Cafe",tags:["Cafe"],area:"Beijing",country:"China"},
+  {slug:"durian-cheese-pancake",title:"Durian Cheese Pancake",tags:["Snack"],area:"Chongqing",country:"China"},
+  {slug:"whipped-cream-lemon",title:"Whipped Cream Lemon Beaten Tea",tags:["Tea"],area:"Chongqing",country:"China"},
+  {slug:"post-coffee-cq",title:"Post Coffee",tags:["Cafe"],area:"Chongqing",country:"China"},
+];
+
+const filters = { city: "All", special: "All", cuisine: "All" };
+
+function showPage(page) {
+  ["home","reviews","about"].forEach(p => document.getElementById(p).style.display = "none");
+  document.getElementById(page).style.display = "block";
+  window.scrollTo(0,0);
+  if(page === "reviews") renderReviews();
+}
+
+function setFilter(type, value, el) {
+  if(type === "special") {
+    filters.special = filters.special === value ? "All" : value;
+    document.querySelectorAll(".chip.special").forEach(c => c.classList.remove("active"));
+    if(filters.special !== "All") el.classList.add("active");
+  } else {
+    filters[type] = value;
+    const row = type === "city" ? 0 : 2;
+    document.querySelectorAll(`.filter-row:nth-child(${type==="city"?2:4}) .chip`).forEach(c => c.classList.remove("active"));
+    el.classList.add("active");
+  }
+  renderReviews();
+}
+
+function setCuisineFilter(value, el) {
+  filters.cuisine = value;
+  document.querySelectorAll("#cuisine-filters .chip").forEach(c => c.classList.remove("active"));
+  el.classList.add("active");
+  renderReviews();
+}
+
+function filterReviews() { renderReviews(); }
+
+function renderReviews() {
+  const search = document.getElementById("search-input").value.toLowerCase();
+  const filtered = ALL.filter(p => {
+    const matchCity = filters.city === "All" || p.country === filters.city;
+    const matchSpecial = filters.special === "All" || p.tags.includes(filters.special);
+    const matchCuisine = filters.cuisine === "All" || p.tags.includes(filters.cuisine);
+    const matchSearch = !search || p.title.toLowerCase().includes(search);
+    return matchCity && matchSpecial && matchCuisine && matchSearch;
+  });
+
+  document.getElementById("results-count").textContent = `${filtered.length} RESULT${filtered.length !== 1 ? "S" : ""}`;
+
+  const list = document.getElementById("reviews-list");
+  list.innerHTML = filtered.map(p => `
+    <div class="review-item">
+      <div>
+        <div class="review-title">${p.title}</div>
+        <div class="review-tags">
+          ${p.tags.map(t => `<span class="tag${SPECIAL.includes(t)?" special":""}">${t.toUpperCase()}</span>`).join("")}
+          <span class="tag-area">${p.area.toUpperCase()}</span>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+    </div>
+  `).join("");
+}
+
+// Build cuisine filter chips
+const cuisines = ["All", ...Array.from(new Set(ALL.flatMap(p => p.tags).filter(t => !SPECIAL.includes(t)))).sort()];
+const cuisineRow = document.getElementById("cuisine-filters");
+cuisineRow.innerHTML = `<span class="filter-label sans">CUISINE</span>` + cuisines.map((c,i) =>
+  `<button class="chip${i===0?" active":""}" onclick="setCuisineFilter('${c}',this)">${c.toUpperCase()}</button>`
+).join("");
+
+// Init
+showPage("home");
+</script>
+</body>
+</html>
