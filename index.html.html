@@ -6,126 +6,105 @@
 <title>Please Eat Me SG</title>
 <meta name="description" content="Honest food reviews from Singapore and beyond — by @plseatme.sg">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: #111; }
-  .sans { font-family: 'Helvetica Neue', Arial, sans-serif; }
-  nav { border-bottom: 1px solid #e8e8e8; padding: 0 2rem; }
-  .nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-size: 15px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; color: #111; }
-  .nav-handle { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #aaa; margin-left: 8px; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; cursor: pointer; color: #555; text-decoration: none; }
-  .nav-links a:hover { color: #111; }
-  .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-
-  /* HOME */
-  #home { display: block; }
-  .hero { border-bottom: 1px solid #e8e8e8; padding: 3.5rem 0 3rem; }
-  .hero-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; color: #888; margin-bottom: 1rem; }
-  .hero h1 { font-size: 42px; font-weight: 400; line-height: 1.15; margin-bottom: 1.25rem; max-width: 620px; }
-  .hero p { font-size: 16px; line-height: 1.75; color: #555; max-width: 520px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
-  .featured { border-bottom: 1px solid #e8e8e8; padding: 2.5rem 0; }
-  .section-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; color: #888; margin-bottom: 1.25rem; }
-  .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-  .photo-placeholder { background: #f5f3ef; aspect-ratio: 4/3; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
-  .photo-placeholder span { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #ccc; letter-spacing: 0.05em; }
-  .featured-meta { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #888; }
-  .featured h2 { font-size: 26px; font-weight: 400; line-height: 1.25; margin: 10px 0 16px; }
-  .featured-excerpt { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 24px; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
-  .read-more { font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.04em; border-bottom: 1px solid #111; padding-bottom: 1px; cursor: pointer; text-decoration: none; color: #111; }
-  .recent { padding: 2.5rem 0; }
-  .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .recent-card { cursor: pointer; }
-  .recent-card:hover h3 { text-decoration: underline; }
-  .recent-photo { background: #f5f3ef; aspect-ratio: 3/2; border-radius: 2px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
-  .recent-cuisine { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #888; display: block; margin-bottom: 6px; }
-  .recent-card h3 { font-size: 15px; font-weight: 400; line-height: 1.35; margin-bottom: 8px; }
-  .recent-meta { font-size: 11px; color: #aaa; font-family: 'Helvetica Neue', Arial, sans-serif; }
-
-  /* REVIEWS */
-  #reviews { display: none; }
-  .reviews-header { border-bottom: 1px solid #e8e8e8; padding: 2.5rem 0 2rem; }
-  .reviews-header h1 { font-size: 32px; font-weight: 400; margin-bottom: 6px; }
-  .reviews-header p { font-size: 14px; color: #888; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
-  .filters { border-bottom: 1px solid #e8e8e8; padding: 1.25rem 0; display: flex; flex-direction: column; gap: 10px; }
-  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-  .filter-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; color: #bbb; margin-right: 2px; min-width: 60px; }
-  .chip { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.07em; padding: 4px 12px; border: 1px solid #ddd; background: #fff; color: #666; border-radius: 2px; cursor: pointer; white-space: nowrap; }
-  .chip:hover { border-color: #aaa; }
-  .chip.active { border-color: #111; background: #111; color: #fff; }
-  .chip.special { background: #FAEEDA; border-color: #FAC775; color: #854F0B; }
-  .chip.special.active { background: #854F0B; border-color: #854F0B; color: #fff; }
-  #search-input { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; padding: 7px 12px; border: 1px solid #ddd; border-radius: 2px; width: 260px; outline: none; color: #111; }
-  .results-count { padding: 0.75rem 0 0.25rem; font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #bbb; letter-spacing: 0.06em; }
-  .review-item { border-bottom: 1px solid #f0f0f0; padding: 1rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .review-item:hover .review-title { text-decoration: underline; }
-  .review-title { font-size: 15px; font-weight: 400; margin-bottom: 6px; line-height: 1.3; }
-  .review-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 2px; background: #f5f5f5; color: #888; border: 1px solid #eee; }
-  .tag.special { background: #FAEEDA; color: #854F0B; border-color: #FAC775; }
-  .tag-area { font-size: 10px; font-family: 'Helvetica Neue', Arial, sans-serif; color: #ccc; letter-spacing: 0.05em; align-self: center; }
-  .arrow { font-size: 11px; color: #ccc; white-space: nowrap; }
-
-  /* FOOTER */
-  footer { border-top: 1px solid #e8e8e8; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-  .footer-copy { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; color: #aaa; }
-  .footer-links { display: flex; gap: 20px; }
-  .footer-links a { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; color: #888; text-decoration: none; }
-  .footer-links a:hover { color: #111; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Georgia,'Times New Roman',serif; background:#fff; color:#111; }
+nav { border-bottom:1px solid #e8e8e8; padding:0 2rem; position:sticky; top:0; background:#fff; z-index:100; }
+.nav-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-logo { font-size:15px; font-family:'Helvetica Neue',Arial,sans-serif; font-weight:500; letter-spacing:0.04em; cursor:pointer; text-decoration:none; color:#111; }
+.nav-handle { font-size:12px; color:#aaa; margin-left:8px; }
+.nav-links { display:flex; gap:28px; }
+.nav-links a { font-size:12px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.08em; cursor:pointer; color:#555; text-decoration:none; }
+.nav-links a:hover { color:#111; }
+.wrap { max-width:900px; margin:0 auto; padding:0 2rem; }
+.page { display:none; }
+.hero { border-bottom:1px solid #e8e8e8; padding:3.5rem 0 3rem; }
+.hero-label { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.1em; color:#888; margin-bottom:1rem; }
+.hero h1 { font-size:42px; font-weight:400; line-height:1.15; margin-bottom:1.25rem; max-width:620px; }
+.hero p { font-size:16px; line-height:1.75; color:#555; max-width:520px; font-family:'Helvetica Neue',Arial,sans-serif; font-weight:300; }
+.reviews-header { border-bottom:1px solid #e8e8e8; padding:2.5rem 0 2rem; }
+.reviews-header h1 { font-size:32px; font-weight:400; margin-bottom:6px; }
+.reviews-header p { font-size:14px; color:#888; font-family:'Helvetica Neue',Arial,sans-serif; font-weight:300; }
+.filters { border-bottom:1px solid #e8e8e8; padding:1.25rem 0; display:flex; flex-direction:column; gap:10px; }
+.filter-row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+.filter-label { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.08em; color:#bbb; margin-right:2px; min-width:60px; }
+.chip { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.07em; padding:4px 12px; border:1px solid #ddd; background:#fff; color:#666; border-radius:2px; cursor:pointer; white-space:nowrap; }
+.chip:hover { border-color:#aaa; }
+.chip.active { border-color:#111; background:#111; color:#fff; }
+.chip.special { background:#FAEEDA; border-color:#FAC775; color:#854F0B; }
+.chip.special.active { background:#854F0B; border-color:#854F0B; color:#fff; }
+#search-input { font-family:'Helvetica Neue',Arial,sans-serif; font-size:13px; padding:7px 12px; border:1px solid #ddd; border-radius:2px; width:260px; outline:none; color:#111; }
+.results-count { padding:0.75rem 0 0.25rem; font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; color:#bbb; letter-spacing:0.06em; }
+.review-item { border-bottom:1px solid #f0f0f0; padding:1rem 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.review-item:hover .review-title { text-decoration:underline; }
+.review-title { font-size:15px; font-weight:400; margin-bottom:6px; line-height:1.3; }
+.review-tags { display:flex; gap:5px; flex-wrap:wrap; }
+.tag { font-size:10px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.06em; padding:2px 7px; border-radius:2px; background:#f5f5f5; color:#888; border:1px solid #eee; }
+.tag.special { background:#FAEEDA; color:#854F0B; border-color:#FAC775; }
+.tag-area { font-size:10px; font-family:'Helvetica Neue',Arial,sans-serif; color:#ccc; letter-spacing:0.05em; align-self:center; }
+.arrow { font-size:11px; color:#ccc; white-space:nowrap; }
+/* RESTAURANT PAGE */
+.rest-breadcrumb { padding:1.25rem 0 0; font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; color:#bbb; letter-spacing:0.06em; cursor:pointer; }
+.rest-breadcrumb span:hover { color:#111; }
+.rest-header { padding:1.5rem 0 1.25rem; border-bottom:1px solid #e8e8e8; }
+.rest-tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:12px; }
+.rest-header h1 { font-size:32px; font-weight:400; line-height:1.2; margin-bottom:8px; }
+.rest-meta { font-size:13px; font-family:'Helvetica Neue',Arial,sans-serif; color:#aaa; }
+.rest-desc { padding:1.75rem 0; border-bottom:1px solid #e8e8e8; max-width:640px; }
+.rest-desc p { font-size:16px; line-height:1.85; color:#444; }
+.rest-visits { padding:1.75rem 0; }
+.rest-visits-label { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.1em; color:#aaa; margin-bottom:1.25rem; }
+.visit-block { margin-bottom:2rem; }
+.visit-date { font-size:12px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.08em; color:#aaa; margin-bottom:1rem; }
+.ig-embed-wrap { max-width:540px; }
+.ig-link-btn { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-family:'Helvetica Neue',Arial,sans-serif; color:#111; text-decoration:none; border-bottom:1px solid #111; padding-bottom:2px; }
+.ig-link-btn:hover { color:#555; border-color:#555; }
+footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-content:space-between; align-items:center; margin-top:1rem; }
+.footer-copy { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.06em; color:#aaa; }
+.footer-links { display:flex; gap:20px; }
+.footer-links a { font-size:11px; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0.06em; color:#888; text-decoration:none; }
+.footer-links a:hover { color:#111; }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo" onclick="showPage('home')">Please Eat Me SG<span class="nav-handle">(@plseatme.sg)</span></a>
+    <a class="nav-logo" onclick="showPage('home')">Please Eat Me SG<span class="nav-handle">(@plseatme.sg)</span></a>
     <div class="nav-links">
-      <a href="#" onclick="showPage('reviews')">REVIEWS</a>
-      <a href="#" onclick="showPage('about')">ABOUT</a>
+      <a onclick="showPage('reviews')">REVIEWS</a>
+      <a onclick="showPage('about')">ABOUT</a>
     </div>
   </div>
 </nav>
 
-<!-- HOME PAGE -->
-<div id="home">
+<!-- HOME -->
+<div id="home" class="page">
   <div class="wrap">
     <div class="hero">
       <p class="hero-label">HONEST FOOD REVIEWS · SINGAPORE AND BEYOND</p>
       <h1>Eating Well Unapologetically.</h1>
       <p>Eating across Singapore and globally, one review at a time.</p>
     </div>
-    <div class="featured">
-      <p class="section-label">LATEST REVIEW</p>
-      <div class="featured-grid">
-        <div class="photo-placeholder"><span>PHOTO</span></div>
-        <div style="padding-top:8px">
-          <span class="featured-meta">ADD YOUR LATEST RESTAURANT · SINGAPORE</span>
-          <h2>Your latest review goes here</h2>
-          <p class="featured-excerpt">Add your review excerpt here once you've written your first post using the blog generator.</p>
-          <a href="#" class="read-more" onclick="showPage('reviews')">Read review</a>
+    <div style="padding:2.5rem 0; border-bottom:1px solid #e8e8e8;">
+      <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:1.25rem;">LATEST REVIEWS</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+        <div onclick="showRestaurant('nickel')" style="cursor:pointer;">
+          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
+          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">CAFE · SINGAPORE</span>
+          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Nickel</h3>
+          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">Mar 2026</span>
         </div>
-      </div>
-    </div>
-    <div class="recent">
-      <p class="section-label">RECENT REVIEWS</p>
-      <div class="recent-grid">
-        <div class="recent-card" onclick="showPage('reviews')">
-          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
-          <span class="recent-cuisine">JAPANESE · SINGAPORE</span>
-          <h3>Kan Sushi Omakase</h3>
-          <span class="recent-meta">★★★★★</span>
+        <div onclick="showRestaurant('gotti-italiano')" style="cursor:pointer;">
+          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
+          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">ITALIAN · SINGAPORE</span>
+          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Gotti Italiano</h3>
+          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">Mar 2026</span>
         </div>
-        <div class="recent-card" onclick="showPage('reviews')">
-          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
-          <span class="recent-cuisine">KOREAN · SEOUL</span>
-          <h3>Puradak Chicken</h3>
-          <span class="recent-meta">★★★★☆</span>
-        </div>
-        <div class="recent-card" onclick="showPage('reviews')">
-          <div class="recent-photo"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc">PHOTO</span></div>
-          <span class="recent-cuisine">ITALIAN · SINGAPORE</span>
-          <h3>Casa Vostra</h3>
-          <span class="recent-meta">★★★★☆</span>
+        <div onclick="showRestaurant('sio-pasta')" style="cursor:pointer;">
+          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
+          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">JAPANESE · ITALIAN · SINGAPORE</span>
+          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Sio Pasta</h3>
+          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">May 2026</span>
         </div>
       </div>
     </div>
@@ -139,17 +118,17 @@
   </div>
 </div>
 
-<!-- REVIEWS PAGE -->
-<div id="reviews">
+<!-- REVIEWS -->
+<div id="reviews" class="page">
   <div class="wrap">
     <div class="reviews-header">
       <h1>All reviews</h1>
-      <p id="total-count">164 places across Singapore, Seoul, Bangkok & China</p>
+      <p id="total-count"></p>
     </div>
     <div class="filters">
       <input type="text" id="search-input" placeholder="Search restaurants..." oninput="filterReviews()">
       <div class="filter-row">
-        <span class="filter-label sans">CITY</span>
+        <span class="filter-label">CITY</span>
         <button class="chip active" onclick="setFilter('city','All',this)">ALL</button>
         <button class="chip" onclick="setFilter('city','Singapore',this)">SINGAPORE</button>
         <button class="chip" onclick="setFilter('city','Seoul',this)">SEOUL</button>
@@ -157,14 +136,14 @@
         <button class="chip" onclick="setFilter('city','China',this)">CHINA</button>
       </div>
       <div class="filter-row">
-        <span class="filter-label sans">TYPE</span>
-        <button class="chip special" onclick="setFilter('special','Omakase',this)">OMAKASE</button>
-        <button class="chip special" onclick="setFilter('special','High Tea',this)">HIGH TEA</button>
-        <button class="chip special" onclick="setFilter('special','Date Night',this)">DATE NIGHT</button>
+        <span class="filter-label">TYPE</span>
+        <button class="chip special" onclick="setSpecial('Omakase',this)">OMAKASE</button>
+        <button class="chip special" onclick="setSpecial('High Tea',this)">HIGH TEA</button>
+        <button class="chip special" onclick="setSpecial('Date Night',this)">DATE NIGHT</button>
       </div>
       <div class="filter-row" id="cuisine-filters"></div>
     </div>
-    <div class="results-count" id="results-count">164 RESULTS</div>
+    <div class="results-count" id="results-count"></div>
     <div id="reviews-list"></div>
     <footer>
       <span class="footer-copy">© 2026 plseatme.sg</span>
@@ -176,13 +155,37 @@
   </div>
 </div>
 
-<!-- ABOUT PAGE -->
-<div id="about" style="display:none">
+<!-- RESTAURANT PAGE -->
+<div id="restaurant" class="page">
   <div class="wrap">
-    <div style="padding: 3rem 0; max-width: 600px;">
-      <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:1rem">ABOUT</p>
-      <h1 style="font-size:32px;font-weight:400;margin-bottom:1.5rem">Please Eat Me SG</h1>
-      <p style="font-size:16px;line-height:1.85;color:#444;margin-bottom:1rem">Honest food reviews from Singapore and wherever the next flight takes me. Follow along on <a href="https://instagram.com/plseatme.sg" style="color:#111">Instagram</a> and <a href="https://tiktok.com/@plseatme.sg" style="color:#111">TikTok</a> at @plseatme.sg.</p>
+    <div class="rest-breadcrumb"><span onclick="showPage('reviews')">← All reviews</span></div>
+    <div class="rest-header">
+      <div class="rest-tags" id="rest-tags"></div>
+      <h1 id="rest-name"></h1>
+      <p class="rest-meta" id="rest-meta"></p>
+    </div>
+    <div class="rest-desc"><p id="rest-desc"></p></div>
+    <div class="rest-visits">
+      <p class="rest-visits-label">MY VISIT(S)</p>
+      <div id="rest-visits-content"></div>
+    </div>
+    <footer>
+      <span class="footer-copy">© 2026 plseatme.sg</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/plseatme.sg" target="_blank">INSTAGRAM</a>
+        <a href="https://tiktok.com/@plseatme.sg" target="_blank">TIKTOK</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="wrap">
+    <div style="padding:3rem 0;max-width:600px;">
+      <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:1rem;">ABOUT</p>
+      <h1 style="font-size:32px;font-weight:400;margin-bottom:1.5rem;">Please Eat Me SG</h1>
+      <p style="font-size:16px;line-height:1.85;color:#444;margin-bottom:1rem;">Honest food reviews from Singapore and wherever the next flight takes me. Follow along on <a href="https://instagram.com/plseatme.sg" style="color:#111;">Instagram</a> and <a href="https://tiktok.com/@plseatme.sg" style="color:#111;">TikTok</a> at @plseatme.sg.</p>
     </div>
     <footer>
       <span class="footer-copy">© 2026 plseatme.sg</span>
@@ -196,241 +199,291 @@
 
 <script>
 const SPECIAL = ["Omakase","High Tea","Date Night"];
+
 const ALL = [
-  {slug:"columbus-coffee-co",title:"Columbus Coffee Co.",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"aburi-en",title:"Aburi En",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-zushi",title:"Sushi Zushi",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
-  {slug:"ralphs-coffee",title:"Ralph's Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-zanmai",title:"Sushi Zanmai",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
-  {slug:"dark-gallery",title:"Dark Gallery",tags:["Cafe","Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"casa-vostra",title:"Casa Vostra",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"mamma-mia",title:"Mamma Mia Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"little-farms-hv",title:"Little Farms – HV",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"tempura-makino",title:"Tempura Makino",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"shin-minori",title:"Shin Minori",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"black-tap",title:"Black Tap",tags:["American"],area:"Singapore",country:"Singapore"},
-  {slug:"seoul-noodle-shop",title:"Seoul Noodle Shop",tags:["Korean"],area:"Singapore",country:"Singapore"},
-  {slug:"birds-of-paradise",title:"Birds of Paradise",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"go-rogue",title:"Go Rogue",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"bao-makers",title:"Bao Makers",tags:["Asian"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-yuki",title:"Sushi Yuki",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
-  {slug:"toku-nori",title:"Toku Nori",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"moxie",title:"Moxie",tags:["European","Mediterranean","Greek","Date Night"],area:"Singapore",country:"Singapore"},
-  {slug:"mott-32",title:"Mott 32",tags:["Chinese"],area:"Singapore",country:"Singapore"},
-  {slug:"marche",title:"Marche",tags:["European"],area:"Singapore",country:"Singapore"},
-  {slug:"5themoments",title:"5themoments",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-go",title:"Sushi Go",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
-  {slug:"chye-seng-huat",title:"Chye Seng Huat Coffee House",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"fourgather-thai",title:"Fourgather Thai Casual Dining",tags:["Thai"],area:"Singapore",country:"Singapore"},
-  {slug:"sushiro-sg",title:"Sushiro",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
-  {slug:"luckin",title:"Luckin",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"risebakehouse-313",title:"Risebakehouse 313",tags:["Bakery"],area:"Singapore",country:"Singapore"},
-  {slug:"shen-and-co",title:"Shen & Co",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"an-tea-social",title:"An Tea Social",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"haidilao",title:"Haidilao",tags:["Hotpot"],area:"Singapore",country:"Singapore"},
-  {slug:"warabimochi-kamakura",title:"Warabimochi Kamakura",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"glasshouse",title:"Glasshouse",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"chicco-trattoria",title:"Chicco Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"tokyo-soba",title:"Tokyo Soba @ Tanjong Pagar",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"urban-eats",title:"Urban Eats Factory",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"tomoro-coffee",title:"Tomoro Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"bonjour-ma-cuisine",title:"Bonjour Ma Cuisine",tags:["French"],area:"Singapore",country:"Singapore"},
-  {slug:"sweet-dots",title:"Sweet Dots",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"nespresso",title:"Nespresso",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"brotzeit",title:"Brotzeit @ VivoCity",tags:["German"],area:"Singapore",country:"Singapore"},
-  {slug:"tofu-g",title:"TOFU G",tags:["Korean"],area:"Singapore",country:"Singapore"},
-  {slug:"pralet",title:"Pralet",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"anti-dote",title:"Anti:Dote",tags:["Bar","High Tea"],area:"Singapore",country:"Singapore"},
-  {slug:"bakalaki",title:"Bakalaki",tags:["Greek"],area:"Singapore",country:"Singapore"},
-  {slug:"scarpetta",title:"Scarpetta",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"big-short-coffee",title:"Big Short Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"yo-chi",title:"Yo-Chi",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"green-green",title:"Green Green",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"long-jing",title:"Long Jing – Lu Cha",tags:["Tea"],area:"Singapore",country:"Singapore"},
-  {slug:"risebakehouse-heritage",title:"Risebakehouse Heritage",tags:["Bakery"],area:"Singapore",country:"Singapore"},
-  {slug:"dior-cafe",title:"Dior Experience Café",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"golden-moments",title:"Golden Moments Cafe",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"hellu",title:"Hellu",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-muni",title:"Sushi Muni",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore"},
-  {slug:"udon-shin",title:"Udon Shin",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"rapu",title:"Rapu",tags:["Korean"],area:"Singapore",country:"Singapore"},
-  {slug:"a-beautiful-day",title:"A Beautiful Day Café",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"a-ma-cha",title:"A Ma Cha",tags:["Tea"],area:"Singapore",country:"Singapore"},
-  {slug:"apt",title:"APT",tags:["Bar"],area:"Singapore",country:"Singapore"},
-  {slug:"ellenborough",title:"Ellenborough Market",tags:["Buffet"],area:"Singapore",country:"Singapore"},
-  {slug:"cococean",title:"Cococean",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"kulto",title:"Kulto",tags:["Spanish"],area:"Singapore",country:"Singapore"},
-  {slug:"sushi-yujo",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
-  {slug:"lino",title:"LINO",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"skai",title:"SKAI Restaurant",tags:["Modern","High Tea"],area:"Singapore",country:"Singapore"},
-  {slug:"onori",title:"Onori",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"knead-kopi",title:"Knead Kopi",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"bacha-coffee",title:"Bacha Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"zus",title:"ZUS",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"opus",title:"Opus",tags:["Bar"],area:"Singapore",country:"Singapore"},
-  {slug:"another-bar",title:"Another Bar",tags:["Bar"],area:"Singapore",country:"Singapore"},
-  {slug:"tsujiri",title:"Tsujiri Premium",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"morinaga",title:"Morinaga Izakaya",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"haru-haru",title:"Haru Haru Mentai + Ramen",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"baby-fang",title:"Baby Fang",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"harrys",title:"Harry's",tags:["Bar"],area:"Singapore",country:"Singapore"},
-  {slug:"pastaria-abate",title:"Pastaria Abate",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"muchachos",title:"Muchachos",tags:["Mexican"],area:"Singapore",country:"Singapore"},
-  {slug:"state-of-affairs",title:"State of Affairs (Longhaus)",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"kan-sushi",title:"Kan Sushi Omakase",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore"},
-  {slug:"watami",title:"Watami",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"family-mookata",title:"Family Mookata",tags:["Thai"],area:"Singapore",country:"Singapore"},
-  {slug:"hello-arigato",title:"Hello Arigato",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"mosella",title:"Mosella",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"q-wa-bar",title:"Q Wa Bar",tags:["Bar"],area:"Singapore",country:"Singapore"},
-  {slug:"mondo",title:"Mondo",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"bao-er-cafe",title:"Bao Er Cafe",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"taka-mochi",title:"Taka Basement Mochi",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"violet-oon",title:"Violet Oon",tags:["Singaporean"],area:"Singapore",country:"Singapore"},
-  {slug:"fangko-house",title:"Fangko House",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"kream-korean",title:"Kream Korean",tags:["Korean"],area:"Singapore",country:"Singapore"},
-  {slug:"nanyang-dao",title:"Nanyang Dao",tags:["Chinese"],area:"Singapore",country:"Singapore"},
-  {slug:"chachao-tea",title:"ChaChao Tea",tags:["Tea"],area:"Singapore",country:"Singapore"},
-  {slug:"bull-noodle",title:"Bull Noodle House",tags:["Chinese"],area:"Singapore",country:"Singapore"},
-  {slug:"nickel",title:"Nickel",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"gotti-italiano",title:"Gotti Italiano",tags:["Italian"],area:"Singapore",country:"Singapore"},
-  {slug:"mongkok-dimsum",title:"Mongkok Dimsum",tags:["Chinese"],area:"Singapore",country:"Singapore"},
-  {slug:"us-pizza",title:"US Pizza",tags:["Pizza"],area:"Singapore",country:"Singapore"},
-  {slug:"9-toast",title:"9 Toast",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"dong-fang",title:"Dong Fang Mei Shi",tags:["Chinese"],area:"Singapore",country:"Singapore"},
-  {slug:"tomacado",title:"Tomacado",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"tamoya",title:"Tamoya",tags:["Japanese"],area:"Singapore",country:"Singapore"},
-  {slug:"yut-yun",title:"Yut Yun Tong Sui",tags:["Dessert"],area:"Singapore",country:"Singapore"},
-  {slug:"wknd-bakes",title:"Wknd Bakes",tags:["Bakery"],area:"Singapore",country:"Singapore"},
-  {slug:"little-farms-sentosa",title:"Little Farms – Sentosa",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"de-taste",title:"De Taste @ Orchard Central",tags:["Asian"],area:"Singapore",country:"Singapore"},
-  {slug:"lantine",title:"Lantine",tags:["Cafe"],area:"Singapore",country:"Singapore"},
-  {slug:"cashmere-roastery",title:"Cashmere Roastery Café",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"metcha",title:"Metcha",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"conway-coffee",title:"Conway Coffee",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"colline-cafe",title:"Colline Cafe",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"jayeondo-salt-bread",title:"Jayeondo Salt Bread",tags:["Bakery"],area:"Seoul",country:"Seoul"},
-  {slug:"mog-eumdang",title:"Mog-Eumdang at Anguk",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"han-jung-sun-mochi",title:"Han Jung Sun Mochi – Seongsu",tags:["Dessert"],area:"Seoul",country:"Seoul"},
-  {slug:"tosokchon",title:"Tosokchon Samgyetang",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"puradak",title:"Puradak Chicken",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"twisted-dnut",title:"Twisted Dnut – Gwangjang",tags:["Dessert"],area:"Seoul",country:"Seoul"},
-  {slug:"ikseon-chwihyang",title:"Ikseon Chwihyang",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"ilho",title:"ILHO",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"onion-seoul",title:"Onion",tags:["Bakery"],area:"Seoul",country:"Seoul"},
-  {slug:"nak-won",title:"Nak-Won",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"myth-jokbal",title:"Myth Jokbal",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"meita-wang",title:"Meita Wang",tags:["Chinese"],area:"Seoul",country:"Seoul"},
-  {slug:"jojo-kalguksu",title:"Jojo Kalguksu",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"garlic-boy",title:"Garlic Boy",tags:["Korean"],area:"Seoul",country:"Seoul"},
-  {slug:"churronut",title:"Churronut @ Haerye Coffee",tags:["Dessert"],area:"Seoul",country:"Seoul"},
-  {slug:"better-day-cafe",title:"Better Day Cafe @ Hongdae",tags:["Cafe"],area:"Seoul",country:"Seoul"},
-  {slug:"primo-bacio",title:"Primo Bacio Baci @ Hongdae",tags:["Italian"],area:"Seoul",country:"Seoul"},
-  {slug:"rare-medium",title:"Rare Medium Welldone",tags:["Steak"],area:"Seoul",country:"Seoul"},
-  {slug:"grain-cookies",title:"Grain Cookies @ Lotte Dept Store",tags:["Dessert"],area:"Seoul",country:"Seoul"},
-  {slug:"ban-khun-mae",title:"Ban Khun Mae",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
-  {slug:"juneny-candy",title:"Juneny Candy",tags:["Dessert"],area:"Bangkok",country:"Bangkok"},
-  {slug:"frans",title:"Fran's",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
-  {slug:"eric-kayser-bkk",title:"Eric Kayser",tags:["Bakery"],area:"Bangkok",country:"Bangkok"},
-  {slug:"the-ground",title:"The Ground",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
-  {slug:"coffee-beans-by-dao",title:"Coffee Beans by Dao",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
-  {slug:"namtaohuu",title:"NamTaoHuu Pu Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
-  {slug:"mk-gold-hotpot",title:"MK Gold Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok"},
-  {slug:"siam-p-crepe",title:"Siam P Michelin Crepe",tags:["Dessert"],area:"Bangkok",country:"Bangkok"},
-  {slug:"mk-bkk-hotpot",title:"MK BKK Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok"},
-  {slug:"sushiro-bkk",title:"Sushiro BKK",tags:["Japanese","Sushi"],area:"Bangkok",country:"Bangkok"},
-  {slug:"hagow-yaowarat",title:"Hagow Yaowarat",tags:["Chinese"],area:"Bangkok",country:"Bangkok"},
-  {slug:"9-inch-banana",title:"9 Inch Fried Banana",tags:["Snack"],area:"Bangkok",country:"Bangkok"},
-  {slug:"here-hai",title:"Here Hai",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
-  {slug:"pandan-snack",title:"Pandan Snack",tags:["Snack"],area:"Bangkok",country:"Bangkok"},
-  {slug:"karun",title:"Karun",tags:["Tea"],area:"Bangkok",country:"Bangkok"},
-  {slug:"arabica-icon-siam",title:"Arabica ICON SIAM",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
-  {slug:"kub-khao",title:"Kub Khao Kub Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
-  {slug:"cps-coffee",title:"CPS Coffee",tags:["Cafe"],area:"Bangkok",country:"Bangkok"},
-  {slug:"a-fox-princess",title:"A Fox Princess Kitchen",tags:["Thai"],area:"Bangkok",country:"Bangkok"},
-  {slug:"101-cantonese",title:"101 Private Cantonese Kitchen",tags:["Chinese"],area:"Guangzhou",country:"China"},
-  {slug:"ililil-cafe",title:"ililil Cafe Dongshankou",tags:["Cafe"],area:"Guangzhou",country:"China"},
-  {slug:"dian-du-de",title:"Dian Du De",tags:["Chinese"],area:"Guangzhou",country:"China"},
-  {slug:"tao-tao-ju",title:"Tao Tao Ju",tags:["Chinese"],area:"Guangzhou",country:"China"},
-  {slug:"chua-lam-dimsum",title:"Chua Lam's Dimsum",tags:["Chinese"],area:"Guangzhou",country:"China"},
-  {slug:"fast-foot-coffee",title:"Fast Foot Coffee",tags:["Cafe"],area:"Guangzhou",country:"China"},
-  {slug:"da-hua-jian-bing",title:"Da Hua Jian Bing",tags:["Chinese"],area:"Beijing",country:"China"},
-  {slug:"fangzhuanchang",title:"Fangzhuanchang No. 69 Zhajiangmian",tags:["Chinese"],area:"Beijing",country:"China"},
-  {slug:"matcha-puff-bj",title:"Matcha Puff",tags:["Dessert"],area:"Beijing",country:"China"},
-  {slug:"sugar-cafe-bj",title:"Sugar Cafe",tags:["Cafe"],area:"Beijing",country:"China"},
-  {slug:"durian-cheese-pancake",title:"Durian Cheese Pancake",tags:["Snack"],area:"Chongqing",country:"China"},
-  {slug:"whipped-cream-lemon",title:"Whipped Cream Lemon Beaten Tea",tags:["Tea"],area:"Chongqing",country:"China"},
-  {slug:"post-coffee-cq",title:"Post Coffee",tags:["Cafe"],area:"Chongqing",country:"China"},
+  // ── ORIGINAL LIST ──
+  {slug:"columbus-coffee-co",title:"Columbus Coffee Co.",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A specialty coffee concept in Singapore known for its quality brews and cosy atmosphere."},
+  {slug:"aburi-en",title:"Aburi En",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese restaurant specialising in aburi (flame-seared) dishes, offering a unique take on traditional Japanese cuisine."},
+  {slug:"sushi-zushi",title:"Sushi Zushi",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore",desc:"A casual sushi restaurant offering an accessible and affordable spread of Japanese sushi favourites."},
+  {slug:"ralphs-coffee",title:"Ralph's Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"The café arm of Ralph Lauren, offering premium coffee and light bites in a distinctly preppy, fashion-forward setting."},
+  {slug:"sushi-zanmai",title:"Sushi Zanmai",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore",desc:"A popular Japanese chain known for its wide variety of sushi at wallet-friendly prices."},
+  {slug:"dark-gallery",title:"Dark Gallery",tags:["Cafe","Dessert"],area:"Singapore",country:"Singapore",desc:"Singapore's go-to destination for single-origin chocolate desserts and specialty coffee, known for its moody, minimalist interiors."},
+  {slug:"casa-vostra",title:"Casa Vostra",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A charming Italian trattoria serving rustic, home-style Italian dishes in a warm and welcoming setting."},
+  {slug:"mamma-mia",title:"Mamma Mia Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A casual Italian trattoria offering classic Italian comfort food, from wood-fired pizzas to hearty pastas."},
+  {slug:"little-farms-hv",title:"Little Farms – HV",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A farm-to-table café and grocer at Holland Village offering clean, wholesome meals using sustainably sourced ingredients."},
+  {slug:"tempura-makino",title:"Tempura Makino",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese tempura specialist offering light, crispy tempura sets prepared fresh to order."},
+  {slug:"shin-minori",title:"Shin Minori",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese buffet restaurant offering an extensive spread of sushi, sashimi, and hot dishes at reasonable prices."},
+  {slug:"black-tap",title:"Black Tap",tags:["American"],area:"Singapore",country:"Singapore",desc:"New York's famous craft burger and shake bar, known for its over-the-top milkshakes and indulgent smash burgers."},
+  {slug:"seoul-noodle-shop",title:"Seoul Noodle Shop",tags:["Korean"],area:"Singapore",country:"Singapore",desc:"A Korean noodle bar serving comforting bowls of jjajangmyeon, bibim naengmyeon, and other Korean noodle favourites."},
+  {slug:"birds-of-paradise",title:"Birds of Paradise",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"Singapore's beloved botanical gelato brand, crafting unique flavours inspired by Southeast Asian herbs, flowers, and spices."},
+  {slug:"go-rogue",title:"Go Rogue",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A specialty coffee café known for its quality brews and a tight selection of pastries and light bites."},
+  {slug:"bao-makers",title:"Bao Makers",tags:["Asian"],area:"Singapore",country:"Singapore",desc:"A modern bao concept offering creative, filled steamed buns with Asian-inspired flavours and fresh ingredients."},
+  {slug:"sushi-yuki",title:"Sushi Yuki",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An intimate omakase counter offering a carefully curated selection of seasonal nigiri and sushi courses."},
+  {slug:"toku-nori",title:"Toku Nori",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese restaurant specialising in handrolls, offering fresh temaki with quality ingredients in a casual setting."},
+  {slug:"moxie",title:"Moxie",tags:["European","Mediterranean","Greek","Date Night"],area:"Singapore",country:"Singapore",desc:"A Mediterranean-inspired restaurant with a relaxed, convivial atmosphere. Known for its Greek-leaning menu, natural wines, and vibrant small plates."},
+  {slug:"mott-32",title:"Mott 32",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A premium Chinese restaurant inspired by the address of Manhattan's first Chinese convenience store, offering refined Cantonese and contemporary Chinese cuisine."},
+  {slug:"marche",title:"Marche",tags:["European"],area:"Singapore",country:"Singapore",desc:"A Swiss-inspired marketplace restaurant offering a wide variety of freshly prepared European dishes in a casual, self-service format."},
+  {slug:"5themoments",title:"5themoments",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A cosy café concept offering specialty coffee and a selection of homemade pastries in a relaxed setting."},
+  {slug:"sushi-go",title:"Sushi Go",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore",desc:"A conveyor belt sushi chain offering a fun, interactive dining experience with a wide variety of sushi at affordable prices."},
+  {slug:"chye-seng-huat",title:"Chye Seng Huat Coffee House",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A specialty coffee institution in Singapore, housed in a restored shophouse in Jalan Besar, renowned for its quality roasts and vibrant café culture."},
+  {slug:"fourgather-thai",title:"Fourgather Thai Casual Dining",tags:["Thai"],area:"Singapore",country:"Singapore",desc:"A casual Thai dining spot serving authentic Thai dishes in a relaxed, unpretentious setting."},
+  {slug:"sushiro-sg",title:"Sushiro",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore",desc:"Japan's most popular conveyor belt sushi chain, offering high quality sushi at accessible prices in a fun, fast-paced dining environment."},
+  {slug:"luckin",title:"Luckin",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"China's largest coffee chain, now in Singapore, offering affordable specialty coffee drinks and light bites."},
+  {slug:"risebakehouse-313",title:"Risebakehouse 313",tags:["Bakery"],area:"Singapore",country:"Singapore",desc:"A popular local bakery known for its artisanal sourdough loaves, pastries, and creative seasonal specials."},
+  {slug:"shen-and-co",title:"Shen & Co",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café offering thoughtfully crafted coffee and a concise menu of food and pastries."},
+  {slug:"an-tea-social",title:"An Tea Social",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A cosy tea café offering a curated selection of artisanal teas alongside light snacks and desserts."},
+  {slug:"haidilao",title:"Haidilao",tags:["Hotpot"],area:"Singapore",country:"Singapore",desc:"The world-famous Chinese hotpot chain, celebrated as much for its theatrical service and complimentary extras as its rich, customisable broth options."},
+  {slug:"warabimochi-kamakura",title:"Warabimochi Kamakura",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore",desc:"A Japanese dessert specialist from Kamakura offering the original bracken-starch mochi — silky, delicate, and dusted with kinako powder."},
+  {slug:"glasshouse",title:"Glasshouse",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A bright, airy café known for its stunning interiors and a menu of light, wholesome dishes and specialty coffee."},
+  {slug:"chicco-trattoria",title:"Chicco Trattoria",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A contemporary Italian trattoria serving refined pasta and wood-fired dishes in a warm, intimate setting."},
+  {slug:"tokyo-soba",title:"Tokyo Soba @ Tanjong Pagar",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese soba specialist in Tanjong Pagar offering freshly made buckwheat noodles in both hot and cold preparations."},
+  {slug:"urban-eats",title:"Urban Eats Factory",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A café and lifestyle concept offering hearty Western-inspired meals and specialty coffee in a comfortable, urban setting."},
+  {slug:"tomoro-coffee",title:"Tomoro Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A modern coffee chain offering well-crafted espresso drinks and light bites at accessible prices across multiple Singapore outlets."},
+  {slug:"bonjour-ma-cuisine",title:"Bonjour Ma Cuisine",tags:["French"],area:"Singapore",country:"Singapore",desc:"A French-inspired café and bakery offering freshly baked pastries, sandwiches, and coffee with a Parisian touch."},
+  {slug:"sweet-dots",title:"Sweet Dots",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A dessert café specialising in mochi and Japanese-inspired sweets, known for its chewy, filled mochi balls in a variety of flavours."},
+  {slug:"nespresso",title:"Nespresso",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"The iconic Swiss coffee brand's boutique café experience, offering premium capsule coffee and a curated selection of sweet accompaniments."},
+  {slug:"brotzeit",title:"Brotzeit @ VivoCity",tags:["German"],area:"Singapore",country:"Singapore",desc:"A German beer bar and restaurant at VivoCity offering authentic Bavarian food — think pretzels, pork knuckles, schnitzels, and a solid lineup of German beers on tap."},
+  {slug:"tofu-g",title:"TOFU G",tags:["Korean"],area:"Singapore",country:"Singapore",desc:"A Korean restaurant specialising in silken tofu stews (sundubu jjigae), offering a comforting and hearty bowl experience."},
+  {slug:"pralet",title:"Pralet",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A dessert concept known for its praline-inspired creations, offering indulgent sweets with a focus on quality ingredients."},
+  {slug:"anti-dote",title:"Anti:Dote",tags:["Bar","High Tea"],area:"Singapore",country:"Singapore",desc:"The cocktail bar at Fairmont Singapore, celebrated for its creative cocktail programme and elegant afternoon tea spread."},
+  {slug:"bakalaki",title:"Bakalaki",tags:["Greek"],area:"Singapore",country:"Singapore",desc:"A Greek taverna offering hearty, convivial dining with traditional mezze, grilled meats, and a warm Mediterranean atmosphere."},
+  {slug:"scarpetta",title:"Scarpetta",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A refined Italian restaurant serving classic pasta dishes and Italian-American cuisine in an elegant setting."},
+  {slug:"big-short-coffee",title:"Big Short Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A specialty coffee bar with a trading-floor theme, offering quality espresso drinks in a slick, finance-inspired setting."},
+  {slug:"yo-chi",title:"Yo-Chi",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A self-serve frozen yoghurt chain offering a fun mix-and-match experience with a wide variety of toppings and flavours."},
+  {slug:"green-green",title:"Green Green",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A plant-forward café offering healthy, wholesome meals and drinks in a bright, welcoming space."},
+  {slug:"long-jing",title:"Long Jing – Lu Cha",tags:["Tea"],area:"Singapore",country:"Singapore",desc:"A Chinese tea house specialising in premium green teas, offering a serene space to explore the art of traditional Chinese tea culture."},
+  {slug:"risebakehouse-heritage",title:"Risebakehouse Heritage",tags:["Bakery"],area:"Singapore",country:"Singapore",desc:"The heritage outlet of Risebakehouse, offering the same beloved artisanal bakes in a charming, old-world setting."},
+  {slug:"dior-cafe",title:"Dior Experience Café",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A pop-up café experience by the fashion house Dior, offering beautifully presented drinks and desserts in an immersive, brand-world setting."},
+  {slug:"golden-moments",title:"Golden Moments Cafe",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A popular dessert café known for its durian pastries and crepes, beloved for its rich, creamy D24 and Mao Shan Wang durian fillings."},
+  {slug:"hellu",title:"Hellu",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café known for its friendly vibe, quality coffee, and a selection of homemade pastries and light bites."},
+  {slug:"sushi-muni",title:"Sushi Muni",tags:["Japanese","Sushi"],area:"Singapore",country:"Singapore",desc:"A sushi restaurant offering fresh, well-crafted sushi and Japanese small plates in a casual dining environment."},
+  {slug:"udon-shin",title:"Udon Shin",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese udon specialist offering hand-pulled noodles in a variety of broths, inspired by the udon culture of Kagawa prefecture."},
+  {slug:"rapu",title:"Rapu",tags:["Korean"],area:"Singapore",country:"Singapore",desc:"A modern Korean restaurant offering contemporary takes on classic Korean dishes in a stylish, casual setting."},
+  {slug:"a-beautiful-day",title:"A Beautiful Day Café",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A charming café known for its aesthetically pleasing interiors and a curated menu of quality coffee and homemade bakes."},
+  {slug:"a-ma-cha",title:"A Ma Cha",tags:["Tea"],area:"Singapore",country:"Singapore",desc:"A tea café offering a curated selection of premium Chinese and Taiwanese teas alongside light snacks and desserts."},
+  {slug:"apt",title:"APT",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A cocktail bar offering a creative drinks programme in a relaxed, intimate setting — a neighbourhood spot for after-work drinks."},
+  {slug:"ellenborough",title:"Ellenborough Market",tags:["Buffet"],area:"Singapore",country:"Singapore",desc:"The all-day dining buffet restaurant at Swissôtel Merchant Court, offering an extensive spread of local and international cuisines."},
+  {slug:"cococean",title:"Cococean",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A dessert café specialising in coconut-based treats and refreshing desserts with tropical Southeast Asian flavours."},
+  {slug:"kulto",title:"Kulto",tags:["Spanish"],area:"Singapore",country:"Singapore",desc:"A Spanish restaurant and bar serving tapas, pintxos, and sharing plates inspired by the vibrant food culture of Spain."},
+  {slug:"sushi-yujo",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An omakase counter at Amara Hotel offering an affordable yet quality lunch omakase experience from just $68, showcasing seasonal Japanese produce."},
+  {slug:"lino",title:"LINO",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A modern Italian restaurant offering a thoughtful menu of handmade pastas and seasonal Italian dishes in a refined setting."},
+  {slug:"skai",title:"SKAI Restaurant",tags:["Modern","High Tea"],area:"Singapore",country:"Singapore",desc:"A rooftop restaurant and bar at Swissôtel The Stamford, offering modern cuisine and an elevated afternoon tea experience with stunning panoramic city views."},
+  {slug:"onori",title:"Onori",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"An Italian café and bakery concept offering freshly baked pastries, Roman-style pizza al taglio, and quality coffee."},
+  {slug:"knead-kopi",title:"Knead Kopi",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A local café blending traditional kopi culture with modern specialty coffee, offering a unique Singapore-inspired coffee experience."},
+  {slug:"bacha-coffee",title:"Bacha Coffee",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A luxury Moroccan coffee brand with opulent, Moorish-inspired interiors, offering over 200 varieties of 100% Arabica coffees from around the world."},
+  {slug:"zus",title:"ZUS",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A Malaysian specialty coffee chain known for its quality, affordability, and extensive menu of espresso drinks and seasonal beverages."},
+  {slug:"opus",title:"Opus",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A bar and grill concept offering craft cocktails and a curated selection of wines alongside a food menu."},
+  {slug:"another-bar",title:"Another Bar",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A neighbourhood cocktail bar with a relaxed vibe, offering creative drinks and a welcoming atmosphere for casual after-work drinks."},
+  {slug:"tsujiri",title:"Tsujiri Premium",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore",desc:"A premium Japanese matcha brand from Kyoto, offering high-grade ceremonial matcha drinks, soft serves, and desserts."},
+  {slug:"morinaga",title:"Morinaga Izakaya",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese izakaya offering a classic selection of small plates, grilled skewers, and drinks in a casual, convivial setting."},
+  {slug:"haru-haru",title:"Haru Haru Mentai + Ramen",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese restaurant specialising in mentaiko (spicy cod roe) dishes and rich ramen bowls."},
+  {slug:"baby-fang",title:"Baby Fang",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A trendy café known for its aesthetically pleasing drinks and desserts, popular among Singapore's café-hopping crowd."},
+  {slug:"harrys",title:"Harry's",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A homegrown Singapore bar chain offering cold beers, pub grub, and a laid-back atmosphere across multiple outlets."},
+  {slug:"pastaria-abate",title:"Pastaria Abate",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"An Italian pasta bar offering handmade, fresh pastas with classic Italian sauces in a casual, no-fuss setting."},
+  {slug:"muchachos",title:"Muchachos",tags:["Mexican"],area:"Singapore",country:"Singapore",desc:"Singapore's go-to Mexican taqueria offering flavour-packed tacos, burritos, and nachos with a vibrant, street-food energy."},
+  {slug:"state-of-affairs",title:"State of Affairs (Longhaus)",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A café concept at Longhaus in Upper Thomson, offering quality coffee and a laid-back, community-driven atmosphere surrounded by greenery."},
+  {slug:"kan-sushi",title:"Kan Sushi Omakase",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An intimate omakase counter offering a quiet, precise sushi experience where the fish does the talking — no theatrics, just exceptional seasonal nigiri."},
+  {slug:"watami",title:"Watami",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese casual dining chain offering an extensive menu of izakaya-style dishes, from sushi to grilled meats and hearty rice bowls."},
+  {slug:"family-mookata",title:"Family Mookata",tags:["Thai"],area:"Singapore",country:"Singapore",desc:"A Thai-style BBQ and steamboat concept offering a fun, communal dining experience with a wide variety of meats, seafood, and vegetables."},
+  {slug:"hello-arigato",title:"Hello Arigato",tags:["Japanese"],area:"Singapore",country:"Singapore",desc:"A Japanese café concept offering Japanese-inspired pastries, sandwiches, and specialty coffee in a friendly, welcoming setting."},
+  {slug:"mosella",title:"Mosella",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"An Italian restaurant offering a menu of classic Italian dishes with a focus on quality ingredients and traditional cooking techniques."},
+  {slug:"q-wa-bar",title:"Q Wa Bar",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A cocktail bar offering creative drinks in a relaxed setting, with a focus on quality spirits and inventive mixology."},
+  {slug:"mondo",title:"Mondo",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A lifestyle café offering quality coffee and a curated food menu in a comfortable, design-forward space."},
+  {slug:"bao-er-cafe",title:"Bao Er Cafe",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café known for its cosy atmosphere and a menu of quality coffee and homemade bakes."},
+  {slug:"taka-mochi",title:"Taka Basement Mochi",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore",desc:"A Japanese mochi counter in the basement of Takashimaya, offering freshly made mochi in a variety of seasonal and classic flavours."},
+  {slug:"violet-oon",title:"Violet Oon",tags:["Singaporean"],area:"Singapore",country:"Singapore",desc:"A celebrated Singaporean restaurant by culinary icon Violet Oon, serving refined Peranakan and Nonya cuisine rooted in Singapore's rich heritage."},
+  {slug:"fangko-house",title:"Fangko House",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A café concept offering a curated selection of coffee, light meals, and pastries in a warm, welcoming space."},
+  {slug:"kream-korean",title:"Kream Korean",tags:["Korean"],area:"Singapore",country:"Singapore",desc:"A Korean café and dessert bar known for its soft-serve creams and Korean-inspired sweet treats."},
+  {slug:"nanyang-dao",title:"Nanyang Dao",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A Chinese restaurant offering traditional Nanyang-style dishes, blending the culinary heritage of Southeast Asian Chinese communities."},
+  {slug:"chachao-tea",title:"ChaChao Tea",tags:["Tea"],area:"Singapore",country:"Singapore",desc:"A tea concept offering premium bubble teas and milk teas with high-quality tea bases and fresh ingredients."},
+  {slug:"bull-noodle",title:"Bull Noodle House",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A noodle bar specialising in rich, slow-cooked beef noodle soups with bold, deep flavours."},
+  {slug:"gotti-italiano",title:"Gotti Italiano",tags:["Italian","Cocktails","Date Night"],area:"Singapore",country:"Singapore",desc:"A vibey Italian restaurant and bar with friendly staff, inventive cocktails, and solid Italian fare — a great spot for a night out.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWEcUGcE7Vh/"}]},
+  {slug:"mongkok-dimsum",title:"Mongkok Dimsum",tags:["Chinese","Dimsum","Supper"],area:"Singapore",country:"Singapore",desc:"A late-night dimsum spot at Cheong Chin Nam Road in Bukit Timah, popular for its authentic Cantonese dimsum served well into the night.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWIwJB0Exlu/"}]},
+  {slug:"us-pizza",title:"US Pizza",tags:["Pizza","American","Fast Food"],area:"Singapore",country:"Singapore",desc:"A casual American-style pizza chain offering a wide variety of pizzas at affordable prices across Singapore.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWIxmSJk6PH/"}]},
+  {slug:"9-toast",title:"9 Toast",tags:["Cafe","Toast/Kaya","Breakfast/Brunch"],area:"Singapore",country:"Singapore",desc:"A modern toast café in a Singapore shopping centre offering kaya toast, soft-boiled eggs, and local breakfast classics with a contemporary twist.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWJGFFBkySO/"}]},
+  {slug:"sushi-yujo2",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An omakase counter at Amara Hotel offering an affordable yet quality lunch omakase experience from just $68.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWMMQzYE3E9/"}]},
+  {slug:"dong-fang",title:"Dong Fang Mei Shi",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A Chinese restaurant at Chinatown offering a spread of traditional Chinese dishes in a casual, unpretentious setting.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWadR_Wk_-P/"}]},
+  {slug:"tomacado",title:"Tomacado",tags:["Western Cuisine","Date Night"],area:"Singapore",country:"Singapore",desc:"A beautiful Western restaurant at Paragon with a stunning floral interior, offering a romantic dining experience with quality Western cuisine.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/reel/DWqGjclk6ef/"}]},
+  {slug:"tamoya",title:"Tamoya",tags:["Japanese","Udon","Ramen","Tempura"],area:"Singapore",country:"Singapore",desc:"A value-for-money Japanese restaurant offering udon, tempura, and ramen at accessible prices — a reliable crowd-pleaser.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DWrALF8k1_8/"}]},
+  {slug:"yut-yun",title:"Yut Yun Tong Sui",tags:["Dessert","Chinese"],area:"Singapore",country:"Singapore",desc:"A traditional Chinese dessert shop offering affordable tong sui (sweet soups) and classic desserts rooted in Cantonese culinary heritage.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DWrIf4kkzKR/"}]},
+  {slug:"wknd-bakes",title:"Wknd Bakes",tags:["Bakery"],area:"Singapore",country:"Singapore",desc:"A home-based bakery taking orders online, known for its lovingly crafted local bakes celebrating Singapore flavours.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/reel/DWu07Fgk2kQ/"}]},
+  {slug:"yi-qian",title:"Yi Qian Hong Kong Cafe",tags:["Chinese","Dimsum","Hong Kong Cafe"],area:"Singapore",country:"Singapore",desc:"A Hong Kong-style café serving quality dim sum and classic cha chaan teng dishes, including excellent roast duck.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DXOafnyE6Cg/"}]},
+  {slug:"lambullghini",title:"Lambullghini – Bull Market Noodle Bar",tags:["Western","Steak","Pasta","Date Night"],area:"Singapore",country:"Singapore",desc:"A bold Modern American steakhouse and noodle bar at Craig Road, Tanjong Pagar, pairing premium A5 Wagyu and grain-fed steaks with handcrafted pastas and open-flame pizzas in an intimate, date-night setting.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DXRbM1Gkz_G/"}]},
+  {slug:"fulee-seafood",title:"FuLee Seafood",tags:["Chinese","Seafood","Zichar"],area:"Singapore",country:"Singapore",desc:"A hearty zichar restaurant with live entertainment — expect generous portions of classic Chinese seafood dishes and a fun, lively atmosphere with a live band.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/reel/DXUaHyZk1pa/"}]},
+  {slug:"burgs",title:"Burgs Singapore",tags:["American","Burgers"],area:"Singapore",country:"Singapore",desc:"A vibey two-storey American burger joint at 16 Bussorah Street, Kampong Glam. Known for quality smash burgers and flavoured fries in a cool, Brooklyn-style setting.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DXcF2cNk5Z4/"}]},
+  {slug:"sanwichio",title:"Sanwichio",tags:["Bakery","Cafe","Pastry","Macarons"],area:"Singapore",country:"Singapore",desc:"An artisanal pastry boutique best known for its beautiful macarons and handcrafted pastries, perfect for gifting or a sweet afternoon treat.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/reel/DXtkfsxEyMP/"}]},
+  {slug:"wen-li",title:"Wen Li Golden Mile Food Centre",tags:["Taiwanese","Hawker","Chinese"],area:"Singapore",country:"Singapore",desc:"A hawker stall at Golden Mile Food Centre serving quality and authentic Taiwanese cuisine at hawker prices — a rare find for genuine Taiwanese flavours.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DX_CwlHEwdS/"}]},
+  {slug:"delifrance",title:"Delifrance Singapore",tags:["French","Cafe"],area:"Singapore",country:"Singapore",desc:"A classic French bakery café chain, a long-time Singapore institution known for its flaky croissants, baguettes, and all-day breakfast options.",visits:[{date:"May 2026",link:"https://www.instagram.com/p/DX3p1MyEx8B/"}]},
+  {slug:"spiffy-dapper",title:"The Spiffy Dapper",tags:["Bar","Cocktails","Speakeasy","Date Night"],area:"Singapore",country:"Singapore",desc:"A hidden speakeasy along River Valley Road serving creative, theatrical cocktails in a moody, intimate setting — one of Singapore's most inventive cocktail bars.",visits:[{date:"May 2026",link:"https://www.instagram.com/reel/DX38OL2zhAx/"}]},
+  {slug:"chens-mapo",title:"Chen's Mapo Tofu",tags:["Chinese","Szechuan","Japanese"],area:"Singapore",country:"Singapore",desc:"A Michelin Bib Gourmand restaurant introducing a bold new menu that blends Szechuan and Japanese culinary styles — fiery, inventive, and deeply satisfying.",visits:[{date:"May 2026",link:"https://www.instagram.com/p/DX6_tamEzQI/"}]},
+  {slug:"palapa",title:"Palapa",tags:["Indonesian","Asian"],area:"Singapore",country:"Singapore",desc:"An Indonesian restaurant offering authentic, flavourful Indonesian cuisine — from rich rendang to aromatic nasi dishes — in a warm, welcoming setting.",visits:[{date:"May 2026",link:"https://www.instagram.com/reel/DX8j3B1vI8K/"}]},
+  {slug:"joyi-cafe",title:"JO-YI Cafe",tags:["Cafe","Vegetarian","Dimsum","Waffles","Dessert"],area:"Singapore",country:"Singapore",desc:"A café in Bedok offering vegetarian dim sum alongside indulgent waffles and desserts — a surprisingly delightful combination.",visits:[{date:"May 2026",link:"https://www.instagram.com/p/DX9mGnDkxcN/"}]},
+  {slug:"sio-pasta",title:"Sio Pasta",tags:["Japanese","Italian","Pasta","Date Night"],area:"Singapore",country:"Singapore",desc:"Singapore's first outpost of Tokyo's Michelin-recognised Sio Aoyama, offering handcrafted Japanese-Italian pasta from $13.80 at Raffles City — chef-driven cooking made accessible.",visits:[{date:"May 2026",link:"https://www.instagram.com/reel/DX_sORWz_jM/"}]},
+  {slug:"oriental-elixir",title:"Oriental Elixir",tags:["Bar","Cocktails","Date Night"],area:"Singapore",country:"Singapore",desc:"A cocktail bar offering unique bespoke cocktails with an Eastern twist — a creative, immersive drinks experience for the adventurous palate.",visits:[{date:"May 2026",link:"https://www.instagram.com/reel/DYJ42isTxxq/"}]},
+  {slug:"nickel",title:"Nickel",tags:["Cafe","Coffee","Dessert"],area:"Singapore",country:"Singapore",desc:"A boutique café near Bugis (formerly Lee's Confectionery) with in-house coffee roasts and standout pastries like the pistachio OTTO and banana chocolate tart. No GST or service charge.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWB8dHlEwkY/"}]},
+  // Seoul
+  {slug:"cashmere-roastery",title:"Cashmere Roastery Café",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A specialty coffee roastery café in Seoul known for its refined brews and minimalist, design-forward interiors."},
+  {slug:"metcha",title:"Metcha",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A café in Seoul offering matcha-focused beverages and desserts alongside specialty coffee."},
+  {slug:"conway-coffee",title:"Conway Coffee",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A specialty coffee café in Seoul known for its quality single-origin brews and cosy, welcoming atmosphere."},
+  {slug:"colline-cafe",title:"Colline Cafe",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A charming café in Seoul with scenic views and a relaxed atmosphere, popular for its coffee and light bites."},
+  {slug:"jayeondo-salt-bread",title:"Jayeondo Salt Bread",tags:["Bakery"],area:"Seoul",country:"Seoul",desc:"A popular Seoul bakery known for its buttery, lightly salted bread rolls — a must-try street snack."},
+  {slug:"mog-eumdang",title:"Mog-Eumdang at Anguk",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A Korean restaurant in the historic Anguk neighbourhood offering traditional Korean meals in a culturally rich setting."},
+  {slug:"han-jung-sun-mochi",title:"Han Jung Sun Mochi – Seongsu",tags:["Dessert"],area:"Seoul",country:"Seoul",desc:"A beloved mochi specialist in Seoul's trendy Seongsu district, known for its soft, freshly made rice cakes with unique fillings."},
+  {slug:"tosokchon",title:"Tosokchon Samgyetang",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"One of Seoul's most famous restaurants, serving the iconic samgyetang — a whole young chicken stuffed with glutinous rice and simmered in a ginseng broth."},
+  {slug:"puradak",title:"Puradak Chicken",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A popular Korean fried chicken chain in Itaewon known for its bold seasoning and addictively crispy, juicy chicken."},
+  {slug:"twisted-dnut",title:"Twisted Dnut – Gwangjang",tags:["Dessert"],area:"Seoul",country:"Seoul",desc:"A creative donut shop at Gwangjang Market offering inventive, twisted donut creations that have gone viral across Seoul."},
+  {slug:"ikseon-chwihyang",title:"Ikseon Chwihyang",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A traditional Korean restaurant in the charming Ikseon-dong hanok village, offering classic Korean cuisine in a beautifully preserved heritage setting."},
+  {slug:"ilho",title:"ILHO",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A design-forward café in Seoul offering specialty coffee and a curated selection of light bites in a stunning, architectural space."},
+  {slug:"onion-seoul",title:"Onion",tags:["Bakery"],area:"Seoul",country:"Seoul",desc:"One of Seoul's most iconic bakery cafés, housed in a dramatic industrial space and famous for its premium baked goods and long queues."},
+  {slug:"nak-won",title:"Nak-Won",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A traditional Korean restaurant offering authentic home-style Korean cooking in a warm, welcoming setting."},
+  {slug:"myth-jokbal",title:"Myth Jokbal",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A Korean restaurant specialising in jokbal — braised pig's trotters — a beloved Korean comfort dish best enjoyed with soju."},
+  {slug:"meita-wang",title:"Meita Wang",tags:["Chinese"],area:"Seoul",country:"Seoul",desc:"A Chinese restaurant in Seoul offering authentic Chinese cuisine with a focus on bold flavours and traditional cooking methods."},
+  {slug:"jojo-kalguksu",title:"Jojo Kalguksu",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A Korean noodle restaurant specialising in kalguksu — handmade knife-cut noodles served in a rich, comforting broth."},
+  {slug:"garlic-boy",title:"Garlic Boy",tags:["Korean"],area:"Seoul",country:"Seoul",desc:"A Korean restaurant and street food concept celebrating garlic in all its forms, beloved for its garlic-forward Korean snacks and dishes."},
+  {slug:"churronut",title:"Churronut @ Haerye Coffee",tags:["Dessert"],area:"Seoul",country:"Seoul",desc:"A dessert concept at Haerye Coffee offering churro-donut hybrids in a variety of creative flavours — a popular Seoul sweet treat."},
+  {slug:"better-day-cafe",title:"Better Day Cafe @ Hongdae",tags:["Cafe"],area:"Seoul",country:"Seoul",desc:"A popular café in Seoul's lively Hongdae district offering quality coffee and a relaxed atmosphere."},
+  {slug:"primo-bacio",title:"Primo Bacio Baci @ Hongdae",tags:["Italian"],area:"Seoul",country:"Seoul",desc:"An Italian café and gelato bar in Hongdae offering authentic Italian pastries, coffee, and artisanal gelato."},
+  {slug:"rare-medium",title:"Rare Medium Welldone",tags:["Korean","Sandwiches","Takeaway"],area:"Seoul",country:"Seoul",desc:"A takeaway sandwich shop in Seoul known for its creative, quality sandwiches — a casual spot beloved by locals and visitors alike."},
+  {slug:"grain-cookies",title:"Grain Cookies @ Lotte Dept Store",tags:["Dessert"],area:"Seoul",country:"Seoul",desc:"A cookie specialist at Lotte Department Store offering thick, chewy, premium cookies in a variety of indulgent flavours."},
+  // Bangkok
+  {slug:"ban-khun-mae",title:"Ban Khun Mae",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A well-loved Bangkok restaurant serving classic Thai home cooking in a warm, traditional setting — great for authentic Thai comfort food."},
+  {slug:"juneny-candy",title:"Juneny Candy",tags:["Dessert"],area:"Bangkok",country:"Bangkok",desc:"A dessert and candy concept in Bangkok offering creative, colourful sweets and confections."},
+  {slug:"frans",title:"Fran's",tags:["Cafe"],area:"Bangkok",country:"Bangkok",desc:"A popular café in Bangkok offering quality coffee and a relaxed, welcoming atmosphere."},
+  {slug:"eric-kayser-bkk",title:"Eric Kayser",tags:["Bakery"],area:"Bangkok",country:"Bangkok",desc:"The Bangkok outpost of the renowned French bakery chain, offering freshly baked sourdough breads, croissants, and pastries of exceptional quality."},
+  {slug:"the-ground",title:"The Ground",tags:["Cafe"],area:"Bangkok",country:"Bangkok",desc:"A multi-concept lifestyle space in Bangkok combining three café and food brands under one roof, popular for its vibrant atmosphere and Instagrammable setting."},
+  {slug:"coffee-beans-by-dao",title:"Coffee Beans by Dao",tags:["Cafe"],area:"Bangkok",country:"Bangkok",desc:"A Thai café chain known for its cosy interiors and a menu of quality coffee drinks and light meals."},
+  {slug:"namtaohuu",title:"NamTaoHuu Pu Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A traditional Thai dessert stall known for its silky, fresh tofu pudding — a classic Bangkok street food experience."},
+  {slug:"mk-gold-hotpot",title:"MK Gold Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok",desc:"The premium tier of Thailand's beloved MK restaurant chain, offering an elevated suki (Thai-style hotpot) experience with premium ingredients."},
+  {slug:"siam-p-crepe",title:"Siam P Michelin Crepe",tags:["Dessert"],area:"Bangkok",country:"Bangkok",desc:"A Michelin-recognised street food crepe stall in Bangkok, famous for its paper-thin, crispy crepes with sweet and savoury fillings."},
+  {slug:"mk-bkk-hotpot",title:"MK BKK Hotpot",tags:["Hotpot"],area:"Bangkok",country:"Bangkok",desc:"Thailand's iconic MK restaurant, a beloved institution for Thai-style suki hotpot with fresh ingredients and signature dipping sauces."},
+  {slug:"sushiro-bkk",title:"Sushiro BKK",tags:["Japanese","Sushi"],area:"Bangkok",country:"Bangkok",desc:"The Bangkok outpost of Japan's top conveyor belt sushi chain, offering high quality sushi at accessible prices."},
+  {slug:"hagow-yaowarat",title:"Hagow Yaowarat",tags:["Chinese"],area:"Bangkok",country:"Bangkok",desc:"A Chinese dim sum spot in Bangkok's Chinatown (Yaowarat), known for its fresh, handmade har gow and traditional Cantonese dim sum."},
+  {slug:"9-inch-banana",title:"9 Inch Fried Banana",tags:["Snack"],area:"Bangkok",country:"Bangkok",desc:"A popular Bangkok street food stall serving oversized, crispy fried bananas — a fun, indulgent snack beloved by locals."},
+  {slug:"here-hai",title:"Here Hai",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A Thai restaurant offering authentic local dishes in a casual, welcoming setting."},
+  {slug:"pandan-snack",title:"Pandan Snack",tags:["Snack"],area:"Bangkok",country:"Bangkok",desc:"A Thai snack stall specialising in pandan-flavoured treats — a fragrant, distinctly Southeast Asian sweet snack."},
+  {slug:"karun",title:"Karun",tags:["Tea"],area:"Bangkok",country:"Bangkok",desc:"A premium Thai tea brand and café offering beautifully crafted teas made from sustainably sourced Thai tea leaves, with a focus on heritage and quality."},
+  {slug:"arabica-icon-siam",title:"Arabica ICON SIAM",tags:["Cafe"],area:"Bangkok",country:"Bangkok",desc:"The Bangkok outpost of Japan's iconic % Arabica coffee brand, located in the stunning ICON SIAM mall with views of the Chao Phraya River."},
+  {slug:"kub-khao",title:"Kub Khao Kub Pla",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A well-regarded Thai restaurant offering a menu of authentic Thai home cooking, beloved for its generous portions and bold, comforting flavours."},
+  {slug:"cps-coffee",title:"CPS Coffee",tags:["Cafe"],area:"Bangkok",country:"Bangkok",desc:"A popular Thai café chain offering quality coffee drinks and light snacks at accessible prices."},
+  {slug:"a-fox-princess",title:"A Fox Princess Kitchen",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A Thai restaurant known for its creative, flavourful Thai dishes with a modern twist."},
+  // China
+  {slug:"101-cantonese",title:"101 Private Cantonese Kitchen",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"An intimate private kitchen in Guangzhou offering refined Cantonese cuisine — exquisite dim sum and classic Cantonese dishes in an exclusive setting."},
+  {slug:"ililil-cafe",title:"ililil Cafe Dongshankou",tags:["Cafe"],area:"Guangzhou",country:"China",desc:"A stylish café in Guangzhou's trendy Dongshankou neighbourhood, popular for its quality coffee and aesthetic interiors."},
+  {slug:"dian-du-de",title:"Dian Du De",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"A renowned Guangzhou restaurant offering classic Cantonese cuisine, celebrated for its authentic dim sum and traditional Guangdong dishes."},
+  {slug:"tao-tao-ju",title:"Tao Tao Ju",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"One of Guangzhou's oldest and most famous teahouses, a Cantonese culinary institution serving authentic yum cha and dim sum since 1880."},
+  {slug:"chua-lam-dimsum",title:"Chua Lam's Dimsum",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"A dim sum restaurant associated with the legendary Hong Kong food critic Chua Lam, offering premium Cantonese dim sum."},
+  {slug:"fast-foot-coffee",title:"Fast Foot Coffee",tags:["Cafe"],area:"Guangzhou",country:"China",desc:"A specialty coffee café in Guangzhou offering quality brews in a modern, urban setting."},
+  {slug:"da-hua-jian-bing",title:"Da Hua Jian Bing",tags:["Chinese"],area:"Beijing",country:"China",desc:"A Beijing street food stall specialising in jian bing — China's beloved savoury crepe, made fresh to order with egg, crispy wonton, and hoisin sauce."},
+  {slug:"fangzhuanchang",title:"Fangzhuanchang No. 69 Zhajiangmian",tags:["Chinese"],area:"Beijing",country:"China",desc:"A famous Beijing noodle restaurant at Fangzhuanchang, celebrated for its classic zhajiangmian — thick wheat noodles topped with a rich fermented soybean paste sauce."},
+  {slug:"matcha-puff-bj",title:"Matcha Puff",tags:["Dessert"],area:"Beijing",country:"China",desc:"A Beijing dessert stall known for its light, airy matcha cream puffs — a popular sweet snack among locals."},
+  {slug:"sugar-cafe-bj",title:"Sugar Cafe",tags:["Cafe"],area:"Beijing",country:"China",desc:"A cosy café in Beijing offering quality coffee and sweet treats in a relaxed setting."},
+  {slug:"durian-cheese-pancake",title:"Durian Cheese Pancake",tags:["Snack"],area:"Chongqing",country:"China",desc:"A Chongqing street food snack offering an indulgent combination of durian and melted cheese in a crispy pancake — bold, creative, and unapologetically indulgent."},
+  {slug:"whipped-cream-lemon",title:"Whipped Cream Lemon Beaten Tea",tags:["Tea"],area:"Chongqing",country:"China",desc:"A Chongqing beverage stall offering a refreshing beaten tea topped with whipped cream and lemon — a popular and uniquely Chinese drink trend."},
+  {slug:"post-coffee-cq",title:"Post Coffee",tags:["Cafe"],area:"Chongqing",country:"China",desc:"A specialty coffee concept in Chongqing offering quality coffee in a creative, design-forward space."},
+  {slug:"little-farms-sentosa",title:"Little Farms – Sentosa",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"The Sentosa outlet of the popular farm-to-table café, offering clean, wholesome meals in a relaxed, resort-like setting."},
+  {slug:"de-taste",title:"De Taste @ Orchard Central",tags:["Asian"],area:"Singapore",country:"Singapore",desc:"An Asian dining concept at Orchard Central offering a diverse menu of Asian dishes in a casual setting."},
+  {slug:"lantine",title:"Lantine",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café offering quality coffee and a selection of light bites in a cosy, welcoming setting."},
 ];
 
-const filters = { city: "All", special: "All", cuisine: "All" };
+const filters = {city:"All", special:"All", cuisine:"All"};
 
-function showPage(page) {
-  ["home","reviews","about"].forEach(p => document.getElementById(p).style.display = "none");
-  document.getElementById(page).style.display = "block";
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.style.display='none');
+  document.getElementById(p).style.display='block';
   window.scrollTo(0,0);
-  if(page === "reviews") renderReviews();
+  if(p==='reviews') renderReviews();
 }
 
-function setFilter(type, value, el) {
-  if(type === "special") {
-    filters.special = filters.special === value ? "All" : value;
-    document.querySelectorAll(".chip.special").forEach(c => c.classList.remove("active"));
-    if(filters.special !== "All") el.classList.add("active");
+function showRestaurant(slug) {
+  const r = ALL.find(x => x.slug===slug);
+  if(!r) return;
+  document.getElementById('rest-name').textContent = r.title;
+  document.getElementById('rest-meta').textContent = r.area + (r.country !== r.area ? ', ' + r.country : '');
+  document.getElementById('rest-desc').textContent = r.desc || '';
+  // Tags
+  const tagsEl = document.getElementById('rest-tags');
+  tagsEl.innerHTML = r.tags.map(t => `<span class="tag${SPECIAL.includes(t)?' special':''}">${t.toUpperCase()}</span>`).join('');
+  // Visits
+  const visitsEl = document.getElementById('rest-visits-content');
+  if(r.visits && r.visits.length) {
+    visitsEl.innerHTML = r.visits.map(v => `
+      <div class="visit-block">
+        <p class="visit-date">${v.date}</p>
+        <div class="ig-embed-wrap">
+          <blockquote class="instagram-media" data-instgrm-permalink="${v.link}" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+            <div style="padding:16px;"><a href="${v.link}" target="_blank" style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;color:#111;text-decoration:none;">View on Instagram →</a></div>
+          </blockquote>
+        </div>
+      </div>
+    `).join('');
+    // Load Instagram embed script
+    if(window.instgrm) window.instgrm.Embeds.process();
+    else {
+      const s = document.createElement('script');
+      s.src = 'https://www.instagram.com/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
   } else {
-    filters[type] = value;
-    const row = type === "city" ? 0 : 2;
-    document.querySelectorAll(`.filter-row:nth-child(${type==="city"?2:4}) .chip`).forEach(c => c.classList.remove("active"));
-    el.classList.add("active");
+    visitsEl.innerHTML = `<a class="ig-link-btn" href="https://instagram.com/plseatme.sg" target="_blank">View on Instagram →</a>`;
   }
+  showPage('restaurant');
+}
+
+function setFilter(type, val, el) {
+  filters[type] = val;
+  el.closest('.filter-row').querySelectorAll('.chip:not(.special)').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
   renderReviews();
 }
 
-function setCuisineFilter(value, el) {
-  filters.cuisine = value;
-  document.querySelectorAll("#cuisine-filters .chip").forEach(c => c.classList.remove("active"));
-  el.classList.add("active");
+function setSpecial(val, el) {
+  filters.special = filters.special === val ? 'All' : val;
+  document.querySelectorAll('.chip.special').forEach(c => c.classList.remove('active'));
+  if(filters.special !== 'All') el.classList.add('active');
+  renderReviews();
+}
+
+function setCuisineFilter(val, el) {
+  filters.cuisine = val;
+  document.querySelectorAll('#cuisine-filters .chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
   renderReviews();
 }
 
 function filterReviews() { renderReviews(); }
 
 function renderReviews() {
-  const search = document.getElementById("search-input").value.toLowerCase();
+  const search = document.getElementById('search-input').value.toLowerCase();
   const filtered = ALL.filter(p => {
-    const matchCity = filters.city === "All" || p.country === filters.city;
-    const matchSpecial = filters.special === "All" || p.tags.includes(filters.special);
-    const matchCuisine = filters.cuisine === "All" || p.tags.includes(filters.cuisine);
-    const matchSearch = !search || p.title.toLowerCase().includes(search);
-    return matchCity && matchSpecial && matchCuisine && matchSearch;
+    return (filters.city==='All' || p.country===filters.city) &&
+           (filters.special==='All' || p.tags.includes(filters.special)) &&
+           (filters.cuisine==='All' || p.tags.includes(filters.cuisine)) &&
+           (!search || p.title.toLowerCase().includes(search));
   });
-
-  document.getElementById("results-count").textContent = `${filtered.length} RESULT${filtered.length !== 1 ? "S" : ""}`;
-
-  const list = document.getElementById("reviews-list");
-  list.innerHTML = filtered.map(p => `
-    <div class="review-item">
+  document.getElementById('results-count').textContent = `${filtered.length} RESULT${filtered.length!==1?'S':''}`;
+  document.getElementById('reviews-list').innerHTML = filtered.map(p => `
+    <div class="review-item" onclick="showRestaurant('${p.slug}')">
       <div>
         <div class="review-title">${p.title}</div>
         <div class="review-tags">
-          ${p.tags.map(t => `<span class="tag${SPECIAL.includes(t)?" special":""}">${t.toUpperCase()}</span>`).join("")}
+          ${p.tags.map(t=>`<span class="tag${SPECIAL.includes(t)?' special':''}">${t.toUpperCase()}</span>`).join('')}
           <span class="tag-area">${p.area.toUpperCase()}</span>
         </div>
       </div>
       <span class="arrow">→</span>
     </div>
-  `).join("");
+  `).join('');
 }
 
-// Build cuisine filter chips
-const cuisines = ["All", ...Array.from(new Set(ALL.flatMap(p => p.tags).filter(t => !SPECIAL.includes(t)))).sort()];
-const cuisineRow = document.getElementById("cuisine-filters");
-cuisineRow.innerHTML = `<span class="filter-label sans">CUISINE</span>` + cuisines.map((c,i) =>
-  `<button class="chip${i===0?" active":""}" onclick="setCuisineFilter('${c}',this)">${c.toUpperCase()}</button>`
-).join("");
+// Build cuisine chips
+const cuisines = ['All',...Array.from(new Set(ALL.flatMap(p=>p.tags).filter(t=>!SPECIAL.includes(t)))).sort()];
+document.getElementById('cuisine-filters').innerHTML =
+  `<span class="filter-label">CUISINE</span>` +
+  cuisines.map((c,i)=>`<button class="chip${i===0?' active':''}" onclick="setCuisineFilter('${c}',this)">${c.toUpperCase()}</button>`).join('');
 
-// Init
-showPage("home");
+document.getElementById('total-count').textContent = `${ALL.length} places across Singapore, Seoul, Bangkok & China`;
+showPage('home');
 </script>
 </body>
 </html>
