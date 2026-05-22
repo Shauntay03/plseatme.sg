@@ -69,7 +69,7 @@ footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-c
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" onclick="showPage('home')">Please Eat Me SG<span class="nav-handle">(@plseatme.sg)</span></a>
+    <a class="nav-logo" onclick="showPage('home')">Home<span class="nav-handle">@plseatme.sg</span></a>
     <div class="nav-links">
       <a onclick="showPage('reviews')">REVIEWS</a>
       <a onclick="showPage('about')">ABOUT</a>
@@ -81,30 +81,67 @@ footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-c
 <div id="home" class="page">
   <div class="wrap">
     <div class="hero">
-      <p class="hero-label">HONEST FOOD REVIEWS · SINGAPORE AND BEYOND</p>
+      <p class="hero-label">Finding the Perfect Place for Every Occasion</p>
       <h1>Eating Well Unapologetically.</h1>
       <p>Eating across Singapore and globally, one review at a time.</p>
     </div>
+    <!-- Featured Restaurants -->
     <div style="padding:2.5rem 0; border-bottom:1px solid #e8e8e8;">
-      <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:1.25rem;">LATEST REVIEWS</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
-        <div onclick="showRestaurant('nickel')" style="cursor:pointer;">
-          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
-          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">CAFE · SINGAPORE</span>
-          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Nickel</h3>
-          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">Mar 2026</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem;">
+        <div>
+          <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.1em;color:#888;margin-bottom:4px;">EDITOR'S PICKS</p>
+          <h2 style="font-size:22px;font-weight:400;">Featured Restaurants</h2>
         </div>
-        <div onclick="showRestaurant('gotti-italiano')" style="cursor:pointer;">
-          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
-          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">ITALIAN · SINGAPORE</span>
-          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Gotti Italiano</h3>
-          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">Mar 2026</span>
+        <span onclick="showPage('reviews')" style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#888;cursor:pointer;border-bottom:1px solid #ddd;padding-bottom:1px;">View all →</span>
+      </div>
+
+      <!-- Omakase -->
+      <div style="margin-bottom:2rem;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;background:#FAEEDA;color:#854F0B;border:1px solid #FAC775;padding:2px 10px;border-radius:2px;">OMAKASE</span>
+          <span style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;">Best omakase experiences</span>
         </div>
-        <div onclick="showRestaurant('sio-pasta')" style="cursor:pointer;">
-          <div style="background:#f5f3ef;aspect-ratio:3/2;border-radius:2px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;color:#ccc;">PHOTO</span></div>
-          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#888;display:block;margin-bottom:6px;">JAPANESE · ITALIAN · SINGAPORE</span>
-          <h3 style="font-size:15px;font-weight:400;line-height:1.35;margin-bottom:8px;">Sio Pasta</h3>
-          <span style="font-size:11px;color:#aaa;font-family:'Helvetica Neue',Arial,sans-serif;">May 2026</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          <div onclick="showRestaurant('kan-sushi')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">Kan Sushi Omakase</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">Quiet, precise omakase — no theatrics, just exceptional seasonal nigiri.</p>
+          </div>
+          <div onclick="showRestaurant('sushi-yuki')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">Sushi Yuki</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">An intimate omakase counter with carefully curated seasonal nigiri courses.</p>
+          </div>
+          <div onclick="showRestaurant('sushi-yujo')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">Sushi Yujo</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore · from $68</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">Affordable lunch omakase at Amara Hotel — great value for the quality.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Night -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+          <span style="font-size:10px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;background:#FAEEDA;color:#854F0B;border:1px solid #FAC775;padding:2px 10px;border-radius:2px;">DATE NIGHT</span>
+          <span style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;">Perfect for a special evening</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+          <div onclick="showRestaurant('moxie')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">Moxie</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore · Mediterranean</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">Vibrant Mediterranean small plates, natural wines, and a convivial atmosphere.</p>
+          </div>
+          <div onclick="showRestaurant('gotti-italiano')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">Gotti Italiano</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore · Italian</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">Vibey Italian with friendly staff, great cocktails, and solid Italian food.</p>
+          </div>
+          <div onclick="showRestaurant('spiffy-dapper')" style="cursor:pointer;padding:1rem;border:1px solid #f0f0f0;border-radius:2px;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#f0f0f0'">
+            <h3 style="font-size:14px;font-weight:400;margin-bottom:6px;">The Spiffy Dapper</h3>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#aaa;margin-bottom:8px;">Singapore · Speakeasy</p>
+            <p style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#666;line-height:1.6;">A hidden speakeasy with creative cocktails — one of Singapore's most inventive bars.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -165,6 +202,10 @@ footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-c
       <p class="rest-meta" id="rest-meta"></p>
     </div>
     <div class="rest-desc"><p id="rest-desc"></p></div>
+    <p style="font-size:11px;font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:0.08em;color:#aaa;margin-bottom:1rem;">VIEW ON INSTAGRAM</p>
+        <a class="ig-link-btn" href="https://instagram.com/plseatme.sg" target="_blank">@plseatme.sg →</a>
+      </div>
+    </div>
     <div class="rest-visits">
       <p class="rest-visits-label">MY VISIT(S)</p>
       <div id="rest-visits-content"></div>
@@ -265,7 +306,7 @@ const ALL = [
   {slug:"ellenborough",title:"Ellenborough Market",tags:["Buffet"],area:"Singapore",country:"Singapore",desc:"The all-day dining buffet restaurant at Swissôtel Merchant Court, offering an extensive spread of local and international cuisines."},
   {slug:"cococean",title:"Cococean",tags:["Dessert"],area:"Singapore",country:"Singapore",desc:"A dessert café specialising in coconut-based treats and refreshing desserts with tropical Southeast Asian flavours."},
   {slug:"kulto",title:"Kulto",tags:["Spanish"],area:"Singapore",country:"Singapore",desc:"A Spanish restaurant and bar serving tapas, pintxos, and sharing plates inspired by the vibrant food culture of Spain."},
-  {slug:"sushi-yujo",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An omakase counter at Amara Hotel offering an affordable yet quality lunch omakase experience from just $68, showcasing seasonal Japanese produce."},
+  {slug:"sushi-yujo",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An omakase counter at Amara Hotel offering an affordable yet quality lunch omakase experience from just $68, showcasing seasonal Japanese produce.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWMMQzYE3E9/"}]},
   {slug:"lino",title:"LINO",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"A modern Italian restaurant offering a thoughtful menu of handmade pastas and seasonal Italian dishes in a refined setting."},
   {slug:"skai",title:"SKAI Restaurant",tags:["Modern","High Tea"],area:"Singapore",country:"Singapore",desc:"A rooftop restaurant and bar at Swissôtel The Stamford, offering modern cuisine and an elevated afternoon tea experience with stunning panoramic city views."},
   {slug:"onori",title:"Onori",tags:["Italian"],area:"Singapore",country:"Singapore",desc:"An Italian café and bakery concept offering freshly baked pastries, Roman-style pizza al taglio, and quality coffee."},
@@ -290,18 +331,18 @@ const ALL = [
   {slug:"q-wa-bar",title:"Q Wa Bar",tags:["Bar"],area:"Singapore",country:"Singapore",desc:"A cocktail bar offering creative drinks in a relaxed setting, with a focus on quality spirits and inventive mixology."},
   {slug:"mondo",title:"Mondo",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A lifestyle café offering quality coffee and a curated food menu in a comfortable, design-forward space."},
   {slug:"bao-er-cafe",title:"Bao Er Cafe",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café known for its cosy atmosphere and a menu of quality coffee and homemade bakes."},
-  {slug:"taka-mochi",title:"Taka Basement Mochi",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore",desc:"A Japanese mochi counter in the basement of Takashimaya, offering freshly made mochi in a variety of seasonal and classic flavours."},
-  {slug:"violet-oon",title:"Violet Oon",tags:["Singaporean"],area:"Singapore",country:"Singapore",desc:"A celebrated Singaporean restaurant by culinary icon Violet Oon, serving refined Peranakan and Nonya cuisine rooted in Singapore's rich heritage."},
-  {slug:"fangko-house",title:"Fangko House",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A café concept offering a curated selection of coffee, light meals, and pastries in a warm, welcoming space."},
-  {slug:"kream-korean",title:"Kream Korean",tags:["Korean"],area:"Singapore",country:"Singapore",desc:"A Korean café and dessert bar known for its soft-serve creams and Korean-inspired sweet treats."},
-  {slug:"nanyang-dao",title:"Nanyang Dao",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A Chinese restaurant offering traditional Nanyang-style dishes, blending the culinary heritage of Southeast Asian Chinese communities."},
-  {slug:"chachao-tea",title:"ChaChao Tea",tags:["Tea"],area:"Singapore",country:"Singapore",desc:"A tea concept offering premium bubble teas and milk teas with high-quality tea bases and fresh ingredients."},
+  {slug:"okabe-mochi",title:"Okabe – Takashimaya Food Hall Mochi",tags:["Japanese","Dessert"],area:"Singapore",country:"Singapore",desc:"A Japanese mochi counter at Takashimaya Food Hall offering freshly made mochi in a variety of seasonal and classic flavours.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DVmT2Huk8al/"}]},
+  {slug:"violet-oon",title:"Violet Oon",tags:["Singaporean"],area:"Singapore",country:"Singapore",desc:"A celebrated Singaporean restaurant by culinary icon Violet Oon, serving refined Peranakan and Nonya cuisine with a new British-Asian fusion lunch menu.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWBLYqgE7kh/"}]},
+  {slug:"fangko-house",title:"Fangko House",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A café concept offering a curated selection of coffee, light meals, and pastries in a warm, welcoming space.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVq2Myik03A/"}]},
+  {slug:"kream-korean",title:"Kream Korean",tags:["Korean","KBBQ"],area:"Singapore",country:"Singapore",desc:"A Korean café and BBQ concept known for its soft-serve creams and Korean-inspired dishes including KBBQ.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DV8vO8iE34H/"}]},
+  {slug:"nanyang-dao",title:"Nanyang Dao",tags:["Singaporean","Local"],area:"Singapore",country:"Singapore",desc:"A local Singaporean restaurant offering traditional Nanyang-style dishes, blending the culinary heritage of Southeast Asian Chinese communities.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DV8MhItk5d0/"}]},
+  {slug:"chachao-tea",title:"ChaChao Tea",tags:["Bubble Tea"],area:"Singapore",country:"Singapore",desc:"A premium bubble tea concept offering quality milk teas and fruit teas with fresh ingredients and high-grade tea bases.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DVvXCxRk3hI/"}]},
   {slug:"bull-noodle",title:"Bull Noodle House",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A noodle bar specialising in rich, slow-cooked beef noodle soups with bold, deep flavours."},
   {slug:"gotti-italiano",title:"Gotti Italiano",tags:["Italian","Cocktails","Date Night"],area:"Singapore",country:"Singapore",desc:"A vibey Italian restaurant and bar with friendly staff, inventive cocktails, and solid Italian fare — a great spot for a night out.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWEcUGcE7Vh/"}]},
   {slug:"mongkok-dimsum",title:"Mongkok Dimsum",tags:["Chinese","Dimsum","Supper"],area:"Singapore",country:"Singapore",desc:"A late-night dimsum spot at Cheong Chin Nam Road in Bukit Timah, popular for its authentic Cantonese dimsum served well into the night.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWIwJB0Exlu/"}]},
   {slug:"us-pizza",title:"US Pizza",tags:["Pizza","American","Fast Food"],area:"Singapore",country:"Singapore",desc:"A casual American-style pizza chain offering a wide variety of pizzas at affordable prices across Singapore.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWIxmSJk6PH/"}]},
   {slug:"9-toast",title:"9 Toast",tags:["Cafe","Toast/Kaya","Breakfast/Brunch"],area:"Singapore",country:"Singapore",desc:"A modern toast café in a Singapore shopping centre offering kaya toast, soft-boiled eggs, and local breakfast classics with a contemporary twist.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWJGFFBkySO/"}]},
-  {slug:"sushi-yujo2",title:"Sushi Yujo",tags:["Japanese","Sushi","Omakase"],area:"Singapore",country:"Singapore",desc:"An omakase counter at Amara Hotel offering an affordable yet quality lunch omakase experience from just $68.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DWMMQzYE3E9/"}]},
+
   {slug:"dong-fang",title:"Dong Fang Mei Shi",tags:["Chinese"],area:"Singapore",country:"Singapore",desc:"A Chinese restaurant at Chinatown offering a spread of traditional Chinese dishes in a casual, unpretentious setting.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DWadR_Wk_-P/"}]},
   {slug:"tomacado",title:"Tomacado",tags:["Western Cuisine","Date Night"],area:"Singapore",country:"Singapore",desc:"A beautiful Western restaurant at Paragon with a stunning floral interior, offering a romantic dining experience with quality Western cuisine.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/reel/DWqGjclk6ef/"}]},
   {slug:"tamoya",title:"Tamoya",tags:["Japanese","Udon","Ramen","Tempura"],area:"Singapore",country:"Singapore",desc:"A value-for-money Japanese restaurant offering udon, tempura, and ramen at accessible prices — a reliable crowd-pleaser.",visits:[{date:"Apr 2026",link:"https://www.instagram.com/p/DWrALF8k1_8/"}]},
@@ -368,18 +409,18 @@ const ALL = [
   {slug:"a-fox-princess",title:"A Fox Princess Kitchen",tags:["Thai"],area:"Bangkok",country:"Bangkok",desc:"A Thai restaurant known for its creative, flavourful Thai dishes with a modern twist."},
   // China
   {slug:"101-cantonese",title:"101 Private Cantonese Kitchen",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"An intimate private kitchen in Guangzhou offering refined Cantonese cuisine — exquisite dim sum and classic Cantonese dishes in an exclusive setting."},
-  {slug:"ililil-cafe",title:"ililil Cafe Dongshankou",tags:["Cafe"],area:"Guangzhou",country:"China",desc:"A stylish café in Guangzhou's trendy Dongshankou neighbourhood, popular for its quality coffee and aesthetic interiors."},
-  {slug:"dian-du-de",title:"Dian Du De",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"A renowned Guangzhou restaurant offering classic Cantonese cuisine, celebrated for its authentic dim sum and traditional Guangdong dishes."},
-  {slug:"tao-tao-ju",title:"Tao Tao Ju",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"One of Guangzhou's oldest and most famous teahouses, a Cantonese culinary institution serving authentic yum cha and dim sum since 1880."},
-  {slug:"chua-lam-dimsum",title:"Chua Lam's Dimsum",tags:["Chinese"],area:"Guangzhou",country:"China",desc:"A dim sum restaurant associated with the legendary Hong Kong food critic Chua Lam, offering premium Cantonese dim sum."},
-  {slug:"fast-foot-coffee",title:"Fast Foot Coffee",tags:["Cafe"],area:"Guangzhou",country:"China",desc:"A specialty coffee café in Guangzhou offering quality brews in a modern, urban setting."},
-  {slug:"da-hua-jian-bing",title:"Da Hua Jian Bing",tags:["Chinese"],area:"Beijing",country:"China",desc:"A Beijing street food stall specialising in jian bing — China's beloved savoury crepe, made fresh to order with egg, crispy wonton, and hoisin sauce."},
-  {slug:"fangzhuanchang",title:"Fangzhuanchang No. 69 Zhajiangmian",tags:["Chinese"],area:"Beijing",country:"China",desc:"A famous Beijing noodle restaurant at Fangzhuanchang, celebrated for its classic zhajiangmian — thick wheat noodles topped with a rich fermented soybean paste sauce."},
-  {slug:"matcha-puff-bj",title:"Matcha Puff",tags:["Dessert"],area:"Beijing",country:"China",desc:"A Beijing dessert stall known for its light, airy matcha cream puffs — a popular sweet snack among locals."},
-  {slug:"sugar-cafe-bj",title:"Sugar Cafe",tags:["Cafe"],area:"Beijing",country:"China",desc:"A cosy café in Beijing offering quality coffee and sweet treats in a relaxed setting."},
-  {slug:"durian-cheese-pancake",title:"Durian Cheese Pancake",tags:["Snack"],area:"Chongqing",country:"China",desc:"A Chongqing street food snack offering an indulgent combination of durian and melted cheese in a crispy pancake — bold, creative, and unapologetically indulgent."},
-  {slug:"whipped-cream-lemon",title:"Whipped Cream Lemon Beaten Tea",tags:["Tea"],area:"Chongqing",country:"China",desc:"A Chongqing beverage stall offering a refreshing beaten tea topped with whipped cream and lemon — a popular and uniquely Chinese drink trend."},
-  {slug:"post-coffee-cq",title:"Post Coffee",tags:["Cafe"],area:"Chongqing",country:"China",desc:"A specialty coffee concept in Chongqing offering quality coffee in a creative, design-forward space."},
+
+  {slug:"dian-du-de",title:"Dian Du De 點都德",tags:["Chinese","Dimsum"],area:"Guangzhou",country:"China",desc:"A renowned Guangzhou restaurant offering classic Cantonese cuisine, celebrated for its authentic dim sum and traditional Guangdong dishes.",visits:[{date:"Feb 2026",link:"https://www.instagram.com/p/DVNCgfYDKLQ/"}]},
+  {slug:"tao-tao-ju",title:"Tao Tao Ju 陶陶居",tags:["Chinese","Dimsum"],area:"Guangzhou",country:"China",desc:"One of Guangzhou's oldest and most famous teahouses, a Cantonese culinary institution serving authentic yum cha and dim sum since 1880. Featured in the Michelin Guide.",visits:[{date:"Feb 2026",link:"https://www.instagram.com/p/DVSTD9Lk6em/"}]},
+  {slug:"chua-lam-dimsum",title:"蔡澜点心 · Chua Lam's Dimsum",tags:["Chinese","Dimsum"],area:"Guangzhou",country:"China",desc:"A dim sum restaurant by legendary Hong Kong food critic Chua Lam, offering premium Cantonese dim sum rooted in tradition.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/p/DVVS90ME-er/"}]},
+  {slug:"fast-foot-coffee",title:"Fast Foot Coffee",tags:["Cafe","Coffee","Dessert"],area:"Guangzhou",country:"China",desc:"A specialty coffee café in Guangzhou offering quality brews and desserts in a modern, urban setting.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVcaIWJEzXh/"}]},
+  {slug:"da-hua-jian-bing",title:"Da Hua Jian Bing",tags:["Chinese","Street Food"],area:"Beijing",country:"China",desc:"A Beijing street food stall specialising in jian bing — China's beloved savoury crepe, made fresh to order with egg, crispy wonton, and hoisin sauce.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVdvF38k3zE/"}]},
+  {slug:"fangzhuanchang",title:"Fangzhuanchang No. 69 Zhajiangmian",tags:["Chinese"],area:"Beijing",country:"China",desc:"A famous Beijing noodle restaurant celebrated for its classic zhajiangmian — thick wheat noodles topped with a rich fermented soybean paste sauce. Michelin Bib Gourmand.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVd1kUCkxWw/"}]},
+  {slug:"puff-ice-cream-bj",title:"泡芙冰淇淋 · Puff Ice Cream",tags:["Dessert","Snack"],area:"Beijing",country:"China",desc:"A popular Beijing dessert stall known for its light, airy cream puffs and ice cream treats.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVgiFzzkyar/"}]},
+  {slug:"sugar-cafe-bj",title:"Sugar Cafe",tags:["Cafe","Coffee"],area:"Beijing",country:"China",desc:"A spacious café in Beijing with both indoor and outdoor seating, offering cakes, coffee, and mains in a relaxed setting.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVlrZA-E42r/"}]},
+  {slug:"durian-cheese-pancake",title:"招牌榴莲芝士饼 · Durian Cheese Pancake",tags:["Snack","Street Food"],area:"Chongqing",country:"China",desc:"A Chongqing street food snack offering an indulgent combination of durian and melted cheese in a crispy pancake — bold, creative, and unapologetically indulgent.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVge8bwE2gW/"}]},
+  {slug:"bamboo-lemon-tea",title:"Bamboo Hand Beaten Lemon Tea",tags:["Tea","Street Food"],area:"Chongqing",country:"China",desc:"A Chongqing street beverage stall offering a refreshing hand-beaten lemon tea — a popular and uniquely Chinese drink trend.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVkn8oCk1fX/"}]},
+  {slug:"post-coffee-cq",title:"Post Coffee",tags:["Cafe","Coffee"],area:"Chongqing",country:"China",desc:"A unique café concept housed in a converted old post office building by China Post — a creative, design-forward space serving quality coffee.",visits:[{date:"Mar 2026",link:"https://www.instagram.com/reel/DVnFxXgk1Ov/"}]},
   {slug:"little-farms-sentosa",title:"Little Farms – Sentosa",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"The Sentosa outlet of the popular farm-to-table café, offering clean, wholesome meals in a relaxed, resort-like setting."},
   {slug:"de-taste",title:"De Taste @ Orchard Central",tags:["Asian"],area:"Singapore",country:"Singapore",desc:"An Asian dining concept at Orchard Central offering a diverse menu of Asian dishes in a casual setting."},
   {slug:"lantine",title:"Lantine",tags:["Cafe"],area:"Singapore",country:"Singapore",desc:"A neighbourhood café offering quality coffee and a selection of light bites in a cosy, welcoming setting."},
