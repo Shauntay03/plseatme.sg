@@ -64,6 +64,7 @@ footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-c
 .footer-links a:hover { color:#111; }
 .feat-card { cursor:pointer; padding:1rem; border:1px solid #f0f0f0; border-radius:2px; transition: border-color 0.15s; }
 .feat-card:hover { border-color:#111; }
+.feat-grid { display:grid; grid-template-columns:1fr; gap:24px; max-width:600px; }
 </style>
 </head>
 <body>
@@ -96,7 +97,7 @@ footer { border-top:1px solid #e8e8e8; padding:1.5rem 0; display:flex; justify-c
         </div>
         <span onclick="showPage('reviews')" style="font-size:12px;font-family:'Helvetica Neue',Arial,sans-serif;color:#888;cursor:pointer;border-bottom:1px solid #ddd;padding-bottom:1px;">View all →</span>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="feat-grid">
         <div class="feat-card" onclick="showRestaurant('sio-pasta')" style="padding:0;overflow:hidden;">
           <div style="aspect-ratio:4/3;background:#f5f3ef;overflow:hidden;">
             <img src="https://www.instagram.com/p/DX_sORWz_jM/media/?size=l" alt="Sio Pasta" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><span style=\'font-size:10px;font-family:Helvetica Neue,Arial,sans-serif;color:#ccc;\'>SIO PASTA</span></div>'">
